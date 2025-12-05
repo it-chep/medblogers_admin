@@ -1,0 +1,20 @@
+
+
+.container{
+    display: flex;
+
+    .link{
+        width: 400px;
+    }
+    
+    .actions{
+        display: flex;
+        width: 0;
+        overflow: hidden;
+        transition: all .75s ease;
+
+        &.open{
+            width: 120px;
+        }
+    }
+}

@@ -1,0 +1,56 @@
+
+
+.inputBox{
+    width: 100%;
+    border: 1px solid #d8d8d8;
+    display: flex;
+    align-items: center;
+    padding: 0 16px;
+    border-radius: 6px;
+    
+    transition: all var(--time-input) ease;
+
+    &.hightlight{
+        border: 1px solid var(--blue);
+    }
+
+    .sign{
+        color: #d8d8d8;
+        text-wrap: nowrap;
+    }
+    
+    .wrap{
+        display: flex;
+        gap: 10px;
+        align-items: center;
+        width: 100%;
+        justify-content: space-between;
+    }
+
+    input{
+        width: 100%;
+        background-color: transparent;
+        border: none;
+        outline: none;
+        color: #fff;
+        height: 40px;
+        font-size: 14px;
+    }
+
+
+    input[type="number"]::-webkit-inner-spin-button,
+    input[type="number"]::-webkit-outer-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+    }
+
+    /* Для Firefox */
+    input[type="number"] {
+        -moz-appearance: textfield;
+    }
+
+    /* Для IE и Edge */
+    input[type="number"]::-ms-clear {
+        display: none;
+    }
+}

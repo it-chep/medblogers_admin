@@ -1,0 +1,32 @@
+
+
+
+.container{
+    height: 100%;
+    position: relative;
+
+    .title{
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+        height: 100%;
+    }   
+
+    .content{
+        background-color: #1C1C1C;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: 10px;
+        padding: 20px;
+        margin-top: 10px;
+        margin-left: -30px;
+        width: 350px;
+        position: absolute;
+        display: none;
+        flex-direction: column;
+        gap: 16px;
+
+        &.open{
+            display: flex;
+        }
+    }
+}

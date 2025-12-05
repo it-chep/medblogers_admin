@@ -1,0 +1,1 @@
+export { ChangeSeo } from "./ui/ChangeSeo";

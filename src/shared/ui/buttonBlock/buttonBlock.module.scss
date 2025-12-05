@@ -1,0 +1,16 @@
+
+
+.button{
+    height: 60px;
+    padding: 21px 27px;
+    background-color: #242424;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 8px;
+    color: var(--text-gray);
+    cursor: pointer;
+    transition: all .15s ease;
+
+    &:hover{
+        border: 1px solid var(--blue);
+    }
+}

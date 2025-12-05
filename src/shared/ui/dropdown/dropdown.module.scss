@@ -1,0 +1,115 @@
+
+
+.container{
+    display: block;
+    align-items: center;
+    position: relative;
+    text-wrap: nowrap;
+
+    .selected{
+        cursor: pointer;
+
+        .icon{
+            display: flex;
+            align-items: center;
+            gap: 4px;
+
+            .arrow{
+                width: 18px;
+                height: 18px;
+                transition: all .2s ease;
+
+                &.open{
+                    transform: rotate(180deg);
+                }
+            }
+        }
+    }
+
+    .list{
+        position: absolute;
+        background-color: var(--dark-gray);
+        display: none;
+        list-style: none;
+        border-radius: 10px;
+        padding: 12px 8px;
+        margin-top: 0;
+        left: 0;
+        max-height: 300px;
+        width: 300px;
+        overflow: auto;
+
+        &.open{
+            display: block;
+        }
+        
+        li{
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            gap: 8px;
+            padding: 4px 8px;
+            border-radius: 8px;
+            transition: all .15s ease;
+
+            .selectedIcon{
+                border: none;
+                width: 18px;
+                height: 18px;
+                padding: 0;
+                margin-left: auto;
+            }
+
+            &:hover{
+                background-color: var(--sign-gray);
+                
+                .selectedIcon{
+                    border: none;
+                }
+
+                img{
+                    border: 1px solid var(--dark-gray);
+                }
+
+                svg{
+                    border: 1px solid var(--dark-gray);
+                    // padding: 3px;
+                }
+            }
+
+            img{
+                border: 1px solid var(--sign-gray);
+                width: 32px;
+                height: 32px;
+                padding: 4px;
+                border-radius: 6px;
+            }
+            
+            svg{
+                border: 1px solid var(--sign-gray);
+                width: 32px;
+                height: 32px;
+                padding: 4px;
+                border-radius: 6px;
+                
+                path{
+                    stroke: var(--text-gray);
+                }
+            }
+        }
+    }
+
+    ::-webkit-scrollbar {
+        width: 6px;
+    }
+    ::-webkit-scrollbar-track {
+        box-sizing: border-box;
+        background: #7d7d7d;
+        border-radius: 50% / 3px;
+        margin: 4px 0;
+    }
+    ::-webkit-scrollbar-thumb{
+        background-color: #ccc;
+        border-radius: 50% / 3px;
+    }
+}

@@ -1,0 +1,30 @@
+
+
+
+.link{
+    .features{
+        display: flex;
+    }
+    
+    .send, .delete{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 4px;
+        transition: all .25s ease;
+        cursor: pointer;
+        border-radius: 6px;
+        
+        &:hover{
+            background-color: var(--sign-gray);
+        }
+    
+        svg{
+            path{
+                stroke: var(--text-gray);
+            }
+            width: 18px;
+            height: 18px;
+        }
+    }
+}

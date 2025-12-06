@@ -9,7 +9,7 @@ class BlogService {
         formData.append('blogId', blogId)
         const imageDataBlob = new Blob([imageData])
         formData.append('imageData', imageDataBlob)
-        const res = await fetchAuth(process.env.REACT_APP_SERVER_URL_API + `/v1/blog/${blogId}/save_image`, {
+        const res = await fetchAuth(process.env.REACT_APP_SERVER_URL_API + `/v1/admin/blog/${blogId}/save_image`, {
             method: "POST",
             body: formData
         })
@@ -18,7 +18,7 @@ class BlogService {
     }
 
     async deleteImage(blogId: string, imageId: string){
-        await fetchAuth(process.env.REACT_APP_SERVER_URL_API + `/v1/blog/${blogId}/delete_image/${imageId}`, {
+        await fetchAuth(process.env.REACT_APP_SERVER_URL_API + `/v1/admin/blog/${blogId}/delete_image/${imageId}`, {
             method: "POST",
             body: JSON.stringify({blogId, imageId}),
             headers: {
@@ -28,13 +28,13 @@ class BlogService {
     }
 
     async getBlog(blogId: string): Promise<IBlog> {
-        const res = await fetchAuth(process.env.REACT_APP_SERVER_URL_API + `/v1/blog/${blogId}`)
+        const res = await fetchAuth(process.env.REACT_APP_SERVER_URL_API + `/v1/admin/blog/${blogId}`)
         const blog: IBlog = await res.json()
         return blog
     }
 
     async updateBlog(blog: IBlog, body: string){
-        await fetchAuth(process.env.REACT_APP_SERVER_URL_API + `/v1/blog/${blog.blogId}/update`, {
+        await fetchAuth(process.env.REACT_APP_SERVER_URL_API + `/v1/admin/blog/${blog.blogId}/update`, {
             method: "POST",
             body: JSON.stringify({...blog, body}),
             headers: {
@@ -44,7 +44,7 @@ class BlogService {
     }
 
     async publishBlog(blogId: string, primaryImageId?: string){
-        await fetchAuth(process.env.REACT_APP_SERVER_URL_API + `/v1/blog/${blogId}/publish`, {
+        await fetchAuth(process.env.REACT_APP_SERVER_URL_API + `/v1/admin/blog/${blogId}/publish`, {
             method: "POST",
             body: JSON.stringify({blogId, primaryImageId}),
             headers: {
@@ -54,7 +54,7 @@ class BlogService {
     }
 
     async unPblishBlog(blogId: string){
-        await fetchAuth(process.env.REACT_APP_SERVER_URL_API + `/v1/blog/${blogId}/publish`, {
+        await fetchAuth(process.env.REACT_APP_SERVER_URL_API + `/v1/admin/blog/${blogId}/unpublish`, {
             method: "POST"
         })
     }
@@ -72,7 +72,7 @@ class BlogService {
     }
 
     async getBlogs(): Promise<IBlogItem[]>{
-        const res = await fetchAuth(process.env.REACT_APP_SERVER_URL_API + `/v1/blog`)
+        const res = await fetchAuth(process.env.REACT_APP_SERVER_URL_API + `/v1/admin/blog`)
         const {blogs}: {blogs: IBlogItem[]} = await res.json()
         return blogs
     }

@@ -11,9 +11,10 @@ interface IProps {
     blogId: string;
     isActive: boolean;
     setIsActive: (isActive: boolean) => void;
+    useImageId: boolean;
 }
 
-export const ChangeBlogActive: FC<IProps> = ({blogId, isActive, setIsActive}) => {
+export const ChangeBlogActive: FC<IProps> = ({blogId, isActive, setIsActive, useImageId}) => {
 
     const {setIsLoading} = useGlobalLoadingActions()
     const {setGlobalMessage} = useGlobalMessageActions()
@@ -23,11 +24,16 @@ export const ChangeBlogActive: FC<IProps> = ({blogId, isActive, setIsActive}) =>
         try{
             setIsLoading(true)
             if(isActive){
-                const elem = document.getElementById('blog_change')
-                if(!elem) throw new Error('Нет редакт блока')
-                const imageId = getPrimaryImageId(elem)
-                if(!imageId) throw new Error('В статье нет ни одной фотки')
-                await blogService.publishBlog(blogId, imageId)
+                if(useImageId){
+                    const elem = document.getElementById('blog_change')
+                    if(!elem) throw new Error('Нет редакт блока')
+                    const imageId = getPrimaryImageId(elem)
+                    if(!imageId) throw new Error('В статье нет ни одной фотки')
+                    await blogService.publishBlog(blogId, imageId)
+                }
+                else{
+                    await blogService.publishBlog(blogId)
+                }
             }
             else{
                 await blogService.unPblishBlog(blogId)

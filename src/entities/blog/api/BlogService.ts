@@ -43,7 +43,7 @@ class BlogService {
         })
     }
 
-    async publishBlog(blogId: string, primaryImageId: string){
+    async publishBlog(blogId: string, primaryImageId?: string){
         await fetchAuth(process.env.REACT_APP_SERVER_URL_API + `/v1/blog/${blogId}/publish`, {
             method: "POST",
             body: JSON.stringify({blogId, primaryImageId}),

@@ -82,6 +82,7 @@ export const Blogs: FC = () => {
                                         blogId={blog.blogId}
                                         isActive={blog.isActive}
                                         setIsActive={setIsActive(blog.blogId)}
+                                        useImageId={false}
                                     />
                                 </section>
                             </BlogItem>

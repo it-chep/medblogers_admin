@@ -71,6 +71,7 @@ export const HeaderChange: FC<IProps> = ({setIsPreview}) => {
                     blogId={blog.blogId}
                     setIsActive={setIsActive}
                     isActive={blog.isActive}
+                    useImageId={true}
                 />
             </section>
         </section>

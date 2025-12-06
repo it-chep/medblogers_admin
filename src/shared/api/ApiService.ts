@@ -7,32 +7,32 @@ let isRefreshing = false;
 let refreshPromise: Promise<string> | null = null;
 const requestQueue: Array<() => void> = [];
 
-// async function refreshToken(): Promise<string> {
-//     const authError = async (res: Response) => {
-//         const {message}: {message: string} = await res.json()
-//         throw new AuthError(message)
-//     }
-//     try {
-//         const newToken = await fetch(`${process.env.REACT_APP_SERVER_URL}/auth/auth/refresh`, {
-//             credentials: 'include'
-//         })
-//         if(!newToken.ok) await authError(newToken)
-//         const res: {token: string} = await newToken.json()
-//         return res.token;
-//     } 
-//     catch (error) {
-//         throw new Error('Failed to refresh token');
-//     }
-// }
+async function refreshToken(): Promise<string> {
+    const authError = async (res: Response) => {
+        const {message}: {message: string} = await res.json()
+        throw new AuthError(message)
+    }
+    try {
+        const newToken = await fetch(`${process.env.REACT_APP_SERVER_URL_API}/v1/auth/refresh`, {
+            credentials: 'include'
+        })
+        if(!newToken.ok) await authError(newToken)
+        const res: {token: string} = await newToken.json()
+        return res.token;
+    } 
+    catch (error) {
+        throw new Error('Failed to refresh token');
+    }
+}
 
 export async function handleUnauthorized(requestFn: () => Promise<Response>): Promise<Response> {
     
     if (!isRefreshing) {
         isRefreshing = true;
-        // refreshPromise = refreshToken();
+        refreshPromise = refreshToken();
         try {
             const newToken = await refreshPromise;
-            // localStorage.setItem('auth_token', newToken);
+            localStorage.setItem('auth_token', newToken);
             
             // Выполняем все запросы из очереди
             requestQueue.forEach(cb => cb());
@@ -59,7 +59,6 @@ export const fetchAuth = async (url: string, init?: RequestInit, isRetry?: boole
 
     newInit.headers = {
         ...newInit.headers,
-        'Content-Type': 'application/json;charset=utf-8',
         'Authorization': `Bearer ${localStorage.getItem('auth_token')}`
     } 
     newInit.credentials = 'include'

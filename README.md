@@ -2,12 +2,12 @@
 
 env: 
 
-REACT_APP_SERVER_URL
+REACT_APP_SERVER_URL_API
 REACT_APP_USE_AUTH
 
 
 ### server url
-REACT_APP_SERVER_URL=host/api/v1
+REACT_APP_SERVER_URL_API=host/api
 
 ### use auth
 либо 'false', либо любое другое знач ('')

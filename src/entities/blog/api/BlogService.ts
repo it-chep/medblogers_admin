@@ -4,16 +4,34 @@ import { IBlog, IBlogItem, IImage } from "../model/types"
 
 class BlogService {
 
-    async saveImage(blogId: string, imageData: string): Promise<IImage> {
-        const pureBase64 = imageData.split(',')[1];
-        const res = await fetchAuth(process.env.REACT_APP_SERVER_URL_API + `/v1/admin/blog/${blogId}/save_image`, {
-            method: "POST",
-            body: JSON.stringify({blogId, pureBase64}),
-            headers: {
-                'Content-Type': 'application/json;charset=utf-8',
+    async saveImage(blogId: string, imageData: ArrayBuffer): Promise<IImage> {
+        // Альтернативный метод конвертации ArrayBuffer в base64
+        const uint8Array = new Uint8Array(imageData);
+        let binary = '';
+
+        for (let i = 0; i < uint8Array.length; i++) {
+            binary += String.fromCharCode(uint8Array[i]);
+        }
+
+        const base64Image = btoa(binary);
+
+        const payload = {
+            blog_id: blogId,
+            image_data: base64Image
+        };
+
+        const res = await fetchAuth(
+            process.env.REACT_APP_SERVER_URL_API + `/v1/admin/blog/${blogId}/save_image`,
+            {
+                method: "POST",
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(payload)
             }
-        })
-        const {image}: {image: IImage} = await res.json()
+        );
+
+        const {image}: {image: IImage} = await res.json();
         return image
     }
 

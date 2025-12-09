@@ -1,20 +1,20 @@
-import { FC, PropsWithChildren, ReactNode, RefObject, useEffect, useState } from "react";
-import { Dropdown } from "../../../../shared/ui/dropdown";
-import { setPointer } from "../../../../shared/lib/helpers/setPointer";
-import { createPortal } from "react-dom";
-import { TVideoPlatform, VideoInsert } from "../VideoPreviewInsert/VideoInsert";
+import {FC, PropsWithChildren, ReactNode, RefObject, useEffect, useState} from "react";
+import {Dropdown} from "../../../../shared/ui/dropdown";
+import {setPointer} from "../../../../shared/lib/helpers/setPointer";
+import {createPortal} from "react-dom";
+import {TVideoPlatform, VideoInsert} from "../VideoPreviewInsert/VideoInsert";
 import classes from './selectedParagraph.module.scss'
-import { H2 } from "../../lib/assets/H2";
-import { H3 } from "../../lib/assets/H3";
-import { ListSvg } from "../../lib/assets/ListSvg";
-import { ListNumSvg } from "../../lib/assets/ListNumSvg";
-import { ImageSvg } from "../../lib/assets/ImageSvg";
-import { HrSvg } from "../../lib/assets/HrSvg";
-import { VKVideoSvg } from "../../lib/assets/VKVideoSvg";
-import { KinescopeSvg } from "../../lib/assets/KinescopeSvg";
-import { YouTubeSvg } from "../../lib/assets/YouTubeSvg";
-import { blogService } from "../../../../entities/blog";
-import { useAppSelector } from "../../../../app/store/store";
+import {H2} from "../../lib/assets/H2";
+import {H3} from "../../lib/assets/H3";
+import {ListSvg} from "../../lib/assets/ListSvg";
+import {ListNumSvg} from "../../lib/assets/ListNumSvg";
+import {ImageSvg} from "../../lib/assets/ImageSvg";
+import {HrSvg} from "../../lib/assets/HrSvg";
+import {VKVideoSvg} from "../../lib/assets/VKVideoSvg";
+import {KinescopeSvg} from "../../lib/assets/KinescopeSvg";
+import {YouTubeSvg} from "../../lib/assets/YouTubeSvg";
+import {blogService} from "../../../../entities/blog";
+import {useAppSelector} from "../../../../app/store/store";
 
 interface IProps {
     contentRef: RefObject<HTMLDivElement | null>;
@@ -22,22 +22,22 @@ interface IProps {
     currentElem: Element | null;
 
     onSelected: () => void;
- 
+
     open?: boolean;
-    
+
     setSelectedFigure: (selectedFigure: string) => void;
 }
 
 export const SelectedParagraph: FC<IProps & PropsWithChildren> = (
     {
-        contentRef, containerRef, onSelected: onSelectedWrap, currentElem, open, 
+        contentRef, containerRef, onSelected: onSelectedWrap, currentElem, open,
         children, setSelectedFigure
     }
 ) => {
     const {blog} = useAppSelector(s => s.blogReducer)
     const [showVideoInput, setShowVideoInput] = useState(false);
     const [platform, setPlatform] = useState<TVideoPlatform>('vk');
-    
+
     const setElem = (currentElem: Element, tag: 'p' | 'ul' | 'ol' | 'h2' | 'h3' | 'figure' | 'hr') => {
         const newP = document.createElement(tag)
         currentElem.insertAdjacentElement('beforebegin', newP)
@@ -45,16 +45,16 @@ export const SelectedParagraph: FC<IProps & PropsWithChildren> = (
     }
 
     const onList = (type: 'ul' | 'ol') => {
-        if(contentRef.current){
+        if (contentRef.current) {
             const sel = window.getSelection()
-            if(sel){
+            if (sel) {
                 let list = document.createElement(type);
-                if(currentElem){
+                if (currentElem) {
                     list = setElem(currentElem, type) as HTMLUListElement | HTMLOListElement
                 }
                 const li = document.createElement('li')
                 list.append(li)
-                
+
                 setPointer(sel, li)
             }
         }
@@ -62,7 +62,7 @@ export const SelectedParagraph: FC<IProps & PropsWithChildren> = (
 
     const onP = () => {
         const sel = window.getSelection()
-        if(sel && currentElem){
+        if (sel && currentElem) {
             const newP = setElem(currentElem, 'p')
             setPointer(sel, newP)
         }
@@ -70,7 +70,7 @@ export const SelectedParagraph: FC<IProps & PropsWithChildren> = (
 
     const onH = (tagName: 'h2' | 'h3') => {
         const sel = window.getSelection()
-        if(sel && currentElem){
+        if (sel && currentElem) {
             const newP = setElem(currentElem, tagName)
             setPointer(sel, newP)
         }
@@ -78,7 +78,7 @@ export const SelectedParagraph: FC<IProps & PropsWithChildren> = (
 
     const onHr = () => {
         const sel = window.getSelection()
-        if(sel && currentElem){
+        if (sel && currentElem) {
             const hr = setElem(currentElem, 'hr')
             hr.onclick = (e) => e.preventDefault()
             onP()
@@ -89,16 +89,16 @@ export const SelectedParagraph: FC<IProps & PropsWithChildren> = (
         const imgHandler = () => {
             img.removeEventListener('click', imgHandler)
             const id = img.dataset.id;
-            if(id){
+            if (id) {
                 setSelectedFigure(id)
                 img.parentElement?.classList.add(classes.selected)
             }
-                    
+
             const docHandler = (e: MouseEvent) => {
                 const target = e.target as Element;
-    
-                if(!target.closest(`img[data-id="${id}"]`)){
-                    if(!target.closest('figure') || (target.tagName === 'FIGCAPTION')){
+
+                if (!target.closest(`img[data-id="${id}"]`)) {
+                    if (!target.closest('figure') || (target.tagName === 'FIGCAPTION')) {
                         setSelectedFigure('')
                     }
                     img.parentElement?.classList.remove(classes.selected)
@@ -109,33 +109,31 @@ export const SelectedParagraph: FC<IProps & PropsWithChildren> = (
             document.addEventListener('click', docHandler)
         }
         img.addEventListener('click', imgHandler)
-    } 
+    }
 
     const initImgDelete = () => {
         const imgs = containerRef.current?.querySelectorAll('img')
-        imgs?.forEach(img => 
+        imgs?.forEach(img =>
             imgClickHandler(img)
         )
     }
 
     useEffect(() => {
-        if(contentRef.current){
+        if (contentRef.current) {
             setTimeout(initImgDelete)
-        }   
+        }
     }, [])
 
     const [isLoading, setIsLoading] = useState<boolean>(false)
 
-    const sendImage = async (imageData: string) => {
-        try{
+    const sendImage = async (imageData: ArrayBuffer) => {
+        try {
             setIsLoading(true)
             const res = await blogService.saveImage(blog.blogId, imageData)
             return res
-        }
-        catch(e){
+        } catch (e) {
             console.log(e)
-        }
-        finally{
+        } finally {
             setIsLoading(false)
         }
     }
@@ -150,12 +148,12 @@ export const SelectedParagraph: FC<IProps & PropsWithChildren> = (
             img.setAttribute('data-id', id)
 
             const sel = window.getSelection()
-            if(sel && currentElem){
+            if (sel && currentElem) {
                 const newP = setElem(currentElem, 'figure')
-                newP.setAttribute('contenteditable', "false")    
+                newP.setAttribute('contenteditable', "false")
                 newP.append(img)
                 const figcaption = document.createElement('figcaption')
-                figcaption.setAttribute('contenteditable', "true")    
+                figcaption.setAttribute('contenteditable', "true")
                 newP.append(figcaption)
                 setPointer(sel, figcaption)
             }
@@ -172,18 +170,18 @@ export const SelectedParagraph: FC<IProps & PropsWithChildren> = (
                         }
                     }]
                 });
-                
+
                 const file = await fileHandle.getFile();
                 const reader = new FileReader();
                 reader.onload = async (e) => {
-                    const imageData = e.target?.result as string
-                    
+                    const imageData = e.target?.result as ArrayBuffer
+
                     const data = await sendImage(imageData)
-                    if(data){
+                    if (data) {
                         SetInDiv(data.imageId, data.imageUrl)
                     }
                 };
-                reader.readAsDataURL(file);
+                reader.readAsArrayBuffer(file);
             } catch (error) {
                 console.log('User cancelled file selection');
             }
@@ -195,7 +193,7 @@ export const SelectedParagraph: FC<IProps & PropsWithChildren> = (
     const onVideo = (platform: TVideoPlatform) => {
         const sel = window.getSelection()
 
-        if(sel && currentElem && containerRef.current){
+        if (sel && currentElem && containerRef.current) {
             const newP = setElem(currentElem, 'p')
             const top = newP.getBoundingClientRect().top - containerRef.current.getBoundingClientRect().top - 8;
             setTop({top, elem: newP})
@@ -204,40 +202,39 @@ export const SelectedParagraph: FC<IProps & PropsWithChildren> = (
         }
     }
 
-    const lists: {paragraph: string, name: string, onClick: () => void, icon: ReactNode}[] = [
-        {name: 'Заголовок 2', paragraph: 'h2', onClick: () => onH('h2'), icon: <H2 />},
-        {name: 'Заголовок 3', paragraph: 'h3', onClick: () => onH('h3'), icon: <H3 />},
-        {name: 'Список', paragraph: 'ul', onClick: () => onList('ul'), icon: <ListSvg />},
-        {name: 'Нумерованный список', paragraph: 'ol', onClick: () => onList('ol'), icon: <ListNumSvg />},
-        {name: 'Изображение', paragraph: 'img', onClick: onImage, icon: <ImageSvg />},
-        {name: 'Разделитеть', paragraph: 'hr', onClick: onHr, icon: <HrSvg />},
-        {name: 'VK Video', paragraph: 'vk', onClick: () => onVideo('vk'), icon: <VKVideoSvg />},
-        {name: 'YouTube', paragraph: 'vk', onClick: () => onVideo('youtube'), icon: <YouTubeSvg />},
-        {name: 'Kinescope', paragraph: 'vk', onClick: () => onVideo('kinescope'), icon: <KinescopeSvg />},
+    const lists: { paragraph: string, name: string, onClick: () => void, icon: ReactNode }[] = [
+        {name: 'Заголовок 2', paragraph: 'h2', onClick: () => onH('h2'), icon: <H2/>},
+        {name: 'Заголовок 3', paragraph: 'h3', onClick: () => onH('h3'), icon: <H3/>},
+        {name: 'Список', paragraph: 'ul', onClick: () => onList('ul'), icon: <ListSvg/>},
+        {name: 'Нумерованный список', paragraph: 'ol', onClick: () => onList('ol'), icon: <ListNumSvg/>},
+        {name: 'Изображение', paragraph: 'img', onClick: onImage, icon: <ImageSvg/>},
+        {name: 'Разделитеть', paragraph: 'hr', onClick: onHr, icon: <HrSvg/>},
+        {name: 'VK Video', paragraph: 'vk', onClick: () => onVideo('vk'), icon: <VKVideoSvg/>},
+        {name: 'YouTube', paragraph: 'vk', onClick: () => onVideo('youtube'), icon: <YouTubeSvg/>},
+        {name: 'Kinescope', paragraph: 'vk', onClick: () => onVideo('kinescope'), icon: <KinescopeSvg/>},
     ]
-    
+
     const onSelected = (name: string) => {
         const target = lists.find(l => l.name === name)
-        if(target){
+        if (target) {
             target.onClick()
             onSelectedWrap()
         }
     }
 
-    const [top, setTop] = useState<{top: number, elem: Element | null}>({elem: null, top: 180})
+    const [top, setTop] = useState<{ top: number, elem: Element | null }>({elem: null, top: 180})
 
     const handleInsertVideo = (newElem: HTMLElement) => {
         if (!contentRef.current) return;
 
-        if(!top.elem){
+        if (!top.elem) {
             contentRef.current.append(newElem)
-        }
-        else{
+        } else {
             top.elem.insertAdjacentElement('afterend', newElem)
             top.elem.remove()
         }
 
-        if(currentElem){
+        if (currentElem) {
             currentElem.insertAdjacentElement('beforebegin', newElem)
         }
 
@@ -246,7 +243,7 @@ export const SelectedParagraph: FC<IProps & PropsWithChildren> = (
 
     return (
         <section className={classes.container}>
-            <Dropdown 
+            <Dropdown
                 items={lists.map(l => ({name: l.name, icon: l.icon}))}
                 onSelected={onSelected}
                 open={open}
@@ -255,14 +252,14 @@ export const SelectedParagraph: FC<IProps & PropsWithChildren> = (
             </Dropdown>
             {
                 contentRef.current && contentRef.current.parentElement && showVideoInput
-                    &&
+                &&
                 createPortal(
-                    <section 
-                        className={classes.videoLink} 
+                    <section
+                        className={classes.videoLink}
                         style={{top: top.top}}
                     >
                         <VideoInsert
-                            onInsert={handleInsertVideo} 
+                            onInsert={handleInsertVideo}
                             setShowVideoInput={setShowVideoInput}
                             setSelectedFigure={setSelectedFigure}
                             platform={platform}

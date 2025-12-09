@@ -31,7 +31,7 @@ export const HeaderInfo: FC = () => {
         try{
             const elem = document.getElementById("blog_change")
             if(elem){
-                const body = decoder(elem)
+                const body = decoder(elem, true)
                 await blogService.updateBlog(blog, body)
                 if(message){
                     setGlobalMessage({type: 'ok', message: 'Сохранено'})

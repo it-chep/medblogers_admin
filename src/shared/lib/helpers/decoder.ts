@@ -1,7 +1,7 @@
 
 
 
-export const decoder = (elem: Element): string => {
+export const decoder = (elem: Element, deleteLastP?: boolean): string => {
     // Создаем глубокую копию элемента
     const clonedElem = elem.cloneNode(true) as Element;
     
@@ -75,6 +75,32 @@ export const decoder = (elem: Element): string => {
         
         // Заменяем элемент на ссылку
         element.parentNode?.replaceChild(linkElement, element);
+    }
+
+    if(deleteLastP){
+
+        const allChildren = Array.from(clonedElem.children);
+        
+        // Идем с конца массива детей
+        for (let i = allChildren.length - 1; i >= 0; i--) {
+            const child = allChildren[i];
+            if ((child.tagName.toLowerCase() === 'p')) {
+                // Проверяем, пустой ли он (учитываем пробелы, переносы строк)
+                const hasContent = child.textContent!.trim().length > 0;
+                
+                // Если параграф пустой - удаляем его
+                if (!hasContent) {
+                    clonedElem.removeChild(child);
+                } else {
+                    // Как только нашли непустой элемент - прекращаем удаление
+                    break;
+                }
+            } else {
+                console.log(333, child)
+                // Как только нашли не-p элемент - прекращаем удаление
+                break;
+            }
+        }
     }
     
     // Возвращаем innerHTML клонированного элемента

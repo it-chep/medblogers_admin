@@ -5,7 +5,7 @@ import { IBlog, IBlogItem, IImage } from "../model/types"
 class BlogService {
 
     async saveImage(blogId: string, imageData: string): Promise<IImage> {
-        const res = await fetchAuth(process.env.REACT_APP_SERVER_URL_API + `/v1/blog/${blogId}/save_image`, {
+        const res = await fetchAuth(process.env.REACT_APP_SERVER_URL_API + `/v1/admin/blog/${blogId}/save_image`, {
             method: "POST",
             body: JSON.stringify({blogId, imageData}),
             headers: {

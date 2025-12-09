@@ -2,7 +2,6 @@ import { FC, RefObject, useEffect, useState } from "react";
 import classesHeader from './header.module.scss'
 import { SelectedRange } from "../selectedRange/SelectedRange";
 import { ChangeParagraph } from "../changeParagraph/ChangeParagraph";
-import { decoder } from "../../../../shared/lib/helpers/decoder";
 import { BgDiv } from "../bgDiv/BgDiv";
 import { DeleteFigure } from "../deleteFigure/DeleteFigure";
 
@@ -37,12 +36,6 @@ export const HeaderChange: FC<IProps> = (
             setOpen(true)
         }
     }, [range])
-
-    const onPublish = () => {
-        if(contentRef.current){
-            // decoder(contentRef.current, links)
-        }
-    }
 
     return (
         <section 

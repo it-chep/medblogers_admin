@@ -37,7 +37,7 @@ export const HeaderChange: FC<IProps> = ({setIsPreview}) => {
             <ChangeSeo />
             <section className={classes.orderingNumber}>
                 <MyInput 
-                    sign="Порядковый номер статьи: " 
+                    sign="Порядковый номер статьи:" 
                     typeInput="number" 
                     value={String(blog.orderingNumber)} 
                     setValue={setOrderingNumber} 
@@ -45,7 +45,7 @@ export const HeaderChange: FC<IProps> = ({setIsPreview}) => {
             </section>
             <section className={classes.slug}>
                 <MyInput 
-                    sign="Слаг: " 
+                    sign="Слаг:" 
                     value={blog.slug} 
                     setValue={setSlug} 
                 />

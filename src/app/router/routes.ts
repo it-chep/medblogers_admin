@@ -14,7 +14,7 @@ export const BLOGS_ROUTE: IRoute = {
 }
 
 export const BLOG_UPDATE_ROUTE: IRoute = {
-    path: '/blog/:id',
+    path: '/blogs/:id',
     name: 'Обновление статьи'
 }
 

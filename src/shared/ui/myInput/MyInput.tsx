@@ -17,18 +17,18 @@ export const MyInput: FC<IProps & ComponentProps<'input'> & PropsWithChildren> =
     {value, setValue, typeInput, onBlur = () => {}, setError = () => {}, sign,  children, ...props}
 ) => {
 
-    const refBox = useRef<HTMLDivElement>(null)
+    const refWrap = useRef<HTMLDivElement>(null)
 
     const onBlurInput = () => {
         onBlur()
-        if(refBox.current){
-            refBox.current.classList.remove(classes.hightlight)
+        if(refWrap.current){
+            refWrap.current.classList.remove(classes.hightlight)
         }
     }
 
     const onFocus = () => {
-        if(refBox.current){
-            refBox.current.classList.add(classes.hightlight)
+        if(refWrap.current){
+            refWrap.current.classList.add(classes.hightlight)
         }
     }
 
@@ -38,11 +38,11 @@ export const MyInput: FC<IProps & ComponentProps<'input'> & PropsWithChildren> =
     }
 
     return (
-        <section ref={refBox} className={classes.inputBox}>
+        <section className={classes.inputBox}>
             <section className={classes.sign}>
                 {sign}&nbsp;
             </section>
-            <section className={classes.wrap}>
+            <section ref={refWrap} className={classes.wrap}>
                 <input 
                     {...props}
                     onFocus={onFocus}

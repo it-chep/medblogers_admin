@@ -37,7 +37,7 @@ export const BlogItem: FC<IProps & PropsWithChildren> = ({blogItem, ind, childre
                 {children}
             </td>
             <td className={classes.link}>
-                <Link to={'/blog/' + blogItem.blogId}>
+                <Link to={'/blogs/' + blogItem.blogId}>
                     <MyButton>
                         Подробнее
                     </MyButton>

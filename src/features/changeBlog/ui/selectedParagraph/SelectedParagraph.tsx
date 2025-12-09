@@ -126,7 +126,7 @@ export const SelectedParagraph: FC<IProps & PropsWithChildren> = (
 
     const [isLoading, setIsLoading] = useState<boolean>(false)
 
-    const sendImage = async (imageData: ArrayBuffer) => {
+    const sendImage = async (imageData: string) => {
         try{
             setIsLoading(true)
             const res = await blogService.saveImage(blog.blogId, imageData)
@@ -176,14 +176,14 @@ export const SelectedParagraph: FC<IProps & PropsWithChildren> = (
                 const file = await fileHandle.getFile();
                 const reader = new FileReader();
                 reader.onload = async (e) => {
-                    const imageData = e.target?.result as ArrayBuffer
-
+                    const imageData = e.target?.result as string
+                    
                     const data = await sendImage(imageData)
                     if(data){
                         SetInDiv(data.imageId, data.imageUrl)
                     }
                 };
-                reader.readAsArrayBuffer(file);
+                reader.readAsDataURL(file);
             } catch (error) {
                 console.log('User cancelled file selection');
             }

@@ -16,6 +16,7 @@ export const CreateBlog: FC = () => {
 
     const [open, setOpen] = useState<boolean>(false)
     const [title, setTitle] = useState<string>('')
+    const [slug, setSlug] = useState<string>('')
     const {setIsLoading} = useGlobalLoadingActions()
     const router = useNavigate()
     const {setGlobalMessage} = useGlobalMessageActions()
@@ -24,8 +25,8 @@ export const CreateBlog: FC = () => {
     const onCreate = async () => {
         try{
             setIsLoading(true)
-            const blogIdRes = await blogService.createBlog(title)
-            router('/blog/' + blogIdRes)
+            const blogIdRes = await blogService.createBlog(title, slug)
+            router('/blogs/' + blogIdRes)
         }
         catch(e){
             console.log(e)
@@ -33,8 +34,11 @@ export const CreateBlog: FC = () => {
                 setIsAuth(false)
                 setGlobalMessage({message: e.message, type: 'error'})
             }
+            else if(e instanceof Error){
+                setGlobalMessage({message: e.message, type: 'error'})
+            }
             else{
-                setGlobalMessage({message: 'Ошибка при получении списка статей', type: 'error'})
+                setGlobalMessage({message: 'Ошибка при создании статьи', type: 'error'})
             }
         }
         finally{
@@ -54,9 +58,16 @@ export const CreateBlog: FC = () => {
                         setValue={setTitle} 
                         placeholder="Введите название статьи" 
                     />
-                    <MyButton onClick={onCreate}>
-                        Создать
-                    </MyButton> 
+                    <MyInput
+                        value={slug} 
+                        setValue={setSlug} 
+                        placeholder="Введите slug статьи" 
+                    />
+                    <section className={classes.button}>
+                        <MyButton onClick={onCreate}>
+                            Создать
+                        </MyButton> 
+                    </section>
                 </section>
             </Modal>
         </section>

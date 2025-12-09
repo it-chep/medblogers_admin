@@ -80,7 +80,7 @@ export const fetchAuth = async (url: string, init?: RequestInit, isRetry?: boole
         }
         else{
             const message: IValidationError = await res.json()
-            throw new Error(message.text || 'Ошибка в запросе')
+            throw new Error(message.message || 'Ошибка в запросе')
         }
     }
     

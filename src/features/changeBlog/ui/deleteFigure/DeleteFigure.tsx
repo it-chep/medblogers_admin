@@ -1,5 +1,10 @@
 import { FC } from "react";
 import classes from './deleteFigure.module.scss'
+import { blogService } from "../../../../entities/blog";
+import { useAppSelector } from "../../../../app/store/store";
+import { AuthError } from "../../../../shared/err/AuthError";
+import { useUserActions } from "../../../../entities/user";
+import { useGlobalMessageActions } from "../../../../entities/globalMessage";
 
 interface IProps {
     selectedFigure: string;
@@ -7,6 +12,10 @@ interface IProps {
 }
 
 export const DeleteFigure: FC<IProps> = ({selectedFigure, setSelectedFigure}) => {
+
+    const {blog} = useAppSelector(s => s.blogReducer)
+    const {setIsAuth} = useUserActions()
+    const {setGlobalMessage} = useGlobalMessageActions()
 
     const deleteSel = () => {
         const sel = window.getSelection()
@@ -17,14 +26,20 @@ export const DeleteFigure: FC<IProps> = ({selectedFigure, setSelectedFigure}) =>
 
     const onDeleteImage = async () => {
         try{
-            // await userService.deleteImage('3', selectedFigure)
-
+            await blogService.deleteImage(blog.blogId, selectedFigure)
         }
         catch(e){
             console.log(e)
+            if(e instanceof AuthError){
+                setIsAuth(false)
+                setGlobalMessage({message: e.message, type: 'error'})
+            }
+            else{
+                setGlobalMessage({message: 'Ошибка при получении статьи', type: 'error'})
+            }
         }
         finally{
-
+            
         }
     }
 

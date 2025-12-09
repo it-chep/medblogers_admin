@@ -7,7 +7,6 @@ export default function BlogsPage() {
 
     return (
         <section className={classes.container + " wrapper_main"}>
-            
             <section className={classes.header}>
                 <h1>
                     Список статей

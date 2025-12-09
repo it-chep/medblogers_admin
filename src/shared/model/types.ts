@@ -1,6 +1,6 @@
 
 
 export interface IValidationError {
-    field: string;
-    text: string;
+    code: number;
+    message: string;
 }

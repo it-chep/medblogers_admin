@@ -46,9 +46,7 @@ export default function BlogEditPage() {
     }
 
     useEffect(() => {
-        if(!blog.body){
-            getData()
-        }
+        getData()
     }, [])
 
     return (

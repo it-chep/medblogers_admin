@@ -44,6 +44,9 @@ export const HeaderInfo: FC = () => {
                 setIsAuth(false)
                 setGlobalMessage({message: e.message, type: 'error'})
             }
+            else if(e instanceof Error){
+                setGlobalMessage({message: e.message, type: 'error'})
+            }
             else{
                 setGlobalMessage({message: 'Ошибка при сохранении статьи', type: 'error'})
             }

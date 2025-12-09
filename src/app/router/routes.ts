@@ -1,8 +1,5 @@
 import { IRoute } from "./types";
 
-
-
-
 export const HOME_ROUTE: IRoute = {
     path: '/',
     name: 'Главная'

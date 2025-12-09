@@ -60,17 +60,19 @@ export const HeaderInfo: FC = () => {
     }
 
     useEffect(() => {
-        if(!saveId.current){
+        if(saveId.current){
+            clearInterval(saveId.current)
+        }
+        if(!blog.isActive){
             const id = setInterval(() => save(false), 5000)
             saveId.current = id;
         }
-        
         return () => {
             if(saveId.current){
                 clearInterval(saveId.current)
             }
         }
-    }, [])
+    }, [blog])
 
     return (
         <section className={classes.container}>

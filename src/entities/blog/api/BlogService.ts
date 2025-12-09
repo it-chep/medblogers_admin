@@ -5,9 +5,10 @@ import { IBlog, IBlogItem, IImage } from "../model/types"
 class BlogService {
 
     async saveImage(blogId: string, imageData: string): Promise<IImage> {
+        const pureBase64 = imageData.split(',')[1];
         const res = await fetchAuth(process.env.REACT_APP_SERVER_URL_API + `/v1/admin/blog/${blogId}/save_image`, {
             method: "POST",
-            body: JSON.stringify({blogId, imageData}),
+            body: JSON.stringify({blogId, pureBase64}),
             headers: {
                 'Content-Type': 'application/json;charset=utf-8',
             }
@@ -53,7 +54,7 @@ class BlogService {
     }
 
     async unPblishBlog(blogId: string){
-        await fetchAuth(process.env.REACT_APP_SERVER_URL_API + `/v1/admin/admin/blog/${blogId}/unpublish`, {
+        await fetchAuth(process.env.REACT_APP_SERVER_URL_API + `/v1/admin/blog/${blogId}/unpublish`, {
             method: "POST"
         })
     }

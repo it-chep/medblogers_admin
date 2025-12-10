@@ -47,25 +47,26 @@ export const BlogPreview: FC<IProps> = ({setIsPreview}) => {
     }
 
     return (
-        <section className={classes.container + " wrapper_main"}>
-            <section className={classes.header}>
-                <ButtonBlock 
-                    onClick={back}
-                />
-            </section>
-            <section className={classes.wrap}>
-                <section className={classes.date}>
-                    {date.slice(0, -3)}, {time}
-                </section>
-                <section className={classes.content}>
-                    <h1>{blog.title}</h1>
-                    
-                    <section 
-                        dangerouslySetInnerHTML={{ __html: body }} 
+        <section className={classes.wrapper + " wrapper_main"}>
+            <section className={classes.container}>
+                <section className={classes.header}>
+                    <ButtonBlock 
+                        onClick={back}
                     />
                 </section>
+                <section className={classes.wrap}>
+                    <section className={classes.date}>
+                        {date.slice(0, -3)}, {time}
+                    </section>
+                    <section className={classes.content}>
+                        <h1>{blog.title}</h1>
+                        
+                        <section 
+                            dangerouslySetInnerHTML={{ __html: body }} 
+                        />
+                    </section>
+                </section>
             </section>
-
             <section className={classes.miniature}>
                 {
                     "123".split('').map(i => 

@@ -1,4 +1,4 @@
-import { FC, KeyboardEvent, MouseEvent, useEffect, useRef, useState } from "react";
+import React, { ClipboardEvent, FC, KeyboardEvent, MouseEvent, useEffect, useRef, useState } from "react";
 import classes from './change.module.scss'
 import { MyInput } from "../../../shared/ui/myInput";
 import { getNodeElement } from "../../../shared/lib/helpers/getNodeElement";
@@ -665,6 +665,104 @@ export const ChangeBlog: FC = () => {
         range.insertNode(fragments)
         return elems
     }
+    
+    const handlePaste = (e: React.ClipboardEvent<HTMLDivElement>) => {
+        if (contentRef.current) {
+            handlePasteTextOnly(e, contentRef.current);
+        }
+    };
+
+    const handlePasteTextOnly = (e: ClipboardEvent, element: HTMLElement): void => {
+        e.preventDefault();
+        
+        // Получаем текст из буфера обмена
+        const clipboardData = e.clipboardData;
+        if (!clipboardData) return;
+        
+        let text = '';
+        
+        // Пробуем получить текст из разных форматов
+        if (clipboardData.types.includes('text/plain')) {
+            text = clipboardData.getData('text/plain');
+        } else if (clipboardData.types.includes('Text')) {
+            text = clipboardData.getData('Text');
+        } else if (clipboardData.types.includes('text/html')) {
+            // Если есть только HTML, парсим его для извлечения текста
+            const html = clipboardData.getData('text/html');
+            text = extractTextFromHTML(html);
+        }
+        
+            if (text.trim()) {
+                insertPlainTextAtCursor(text, element);
+            }
+    };
+
+    const extractTextFromHTML = (html: string): string => {
+        const tempDiv = document.createElement('div');
+        tempDiv.innerHTML = html;
+        
+        // Удаляем все теги, оставляя только текст
+        return tempDiv.textContent || tempDiv.innerText || '';
+    };
+
+    const insertPlainTextAtCursor = (text: string, element: HTMLElement): void => {
+        const selection = window.getSelection();
+        if (!selection || !selection.rangeCount) {
+            // Если нет выделения, добавляем текст в конец
+            appendTextToElement(text, element);
+            return;
+        }
+        
+        const range = selection.getRangeAt(0);
+        
+        // Проверяем, что курсор находится внутри нашего элемента
+        if (!element.contains(range.commonAncestorContainer)) {
+            appendTextToElement(text, element);
+            return;
+        }
+        
+        // Удаляем выделенный текст (если есть)
+        range.deleteContents();
+        
+        // Создаем текстовый узел и вставляем его
+        const textNode = document.createTextNode(text);
+        range.insertNode(textNode);
+        
+        // Перемещаем курсор после вставленного текста
+        range.setStartAfter(textNode);
+        range.collapse(true);
+        
+        selection.removeAllRanges();
+        selection.addRange(range);
+        
+        // Триггерим событие input для React
+        element.dispatchEvent(new Event('input', { bubbles: true }));
+    };
+
+    const appendTextToElement = (text: string, element: HTMLElement): void => {
+        // Если элемент пустой
+        if (!element.textContent && !element.children.length) {
+            element.textContent = text;
+        } else {
+            // Добавляем текст в конец
+            const textNode = document.createTextNode(text);
+            element.appendChild(textNode);
+            
+            // Перемещаем курсор в конец
+            const range = document.createRange();
+            const selection = window.getSelection();
+            
+            range.selectNodeContents(element);
+            range.collapse(false);
+            
+            if (selection) {
+            selection.removeAllRanges();
+            selection.addRange(range);
+            }
+        }
+        
+        element.dispatchEvent(new Event('input', { bubbles: true }));
+    };
 
     const [visible, setVisible] = useState<boolean>(false)
     const [opacity, setOpacity] = useState<boolean>(false)
@@ -708,6 +806,7 @@ export const ChangeBlog: FC = () => {
                     onKeyUp={onKeyUp}
                     onClick={onClick}
                     onFocus={onFocus}
+                    onPaste={handlePaste}
                     className={classes.content}
                     ref={contentRef}
                     data-placeholder="Начните свой рассказ прямо сейчас..."

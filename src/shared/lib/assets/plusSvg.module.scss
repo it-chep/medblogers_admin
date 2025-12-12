@@ -1,0 +1,16 @@
+.svg{
+    cursor: pointer;
+    transition: all .15s ease;
+
+    &:hover{
+        path{
+            stroke: #fff;
+        }
+    }
+
+    path{
+        stroke: var(--text-gray);
+    }
+    width: 24px;
+    height: 24px;
+}

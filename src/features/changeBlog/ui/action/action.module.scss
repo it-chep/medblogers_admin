@@ -1,0 +1,35 @@
+
+
+.container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    outline: none;
+    width: 30px;
+    height: 30px;
+    border-radius: 6px;
+    cursor: pointer;
+    background-color: transparent;
+    transition: all .25s ease;
+
+    &:hover{
+        background-color: var(--sign-gray);
+    }
+
+    &.selected{
+        svg{
+            path{
+                stroke: var(--blue);
+            }
+        }
+    }
+
+    svg{
+        path{
+            stroke: var(--text-gray);
+        }
+        width: 18px;
+        height: 18px;
+    }
+}

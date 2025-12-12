@@ -1,0 +1,26 @@
+
+
+.container{
+    position: absolute;
+    left: -32px;
+    transition: opacity .45s ease;   
+    height: 0;
+    
+    li{
+        font-size: 15px;
+    }
+    
+    svg{
+        cursor: pointer;
+
+        path{
+            stroke: var(--text-gray);
+        }
+        width: 24px;
+        height: 24px;
+    }
+
+    .list{
+        position: relative;
+    }
+}

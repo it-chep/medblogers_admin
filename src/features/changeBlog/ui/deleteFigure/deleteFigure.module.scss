@@ -1,0 +1,22 @@
+
+
+.delete{
+    svg{
+        fill: var(--text-gray); 
+        width: 100%;
+        height: 100%;
+        padding: 4px;
+    }
+    width: 30px;
+    height: 30px;
+    border-radius: 6px;
+    transition: all 0.25s ease;
+    cursor: pointer;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+
+    &:hover{
+        background-color: var(--sign-gray);
+    }
+}

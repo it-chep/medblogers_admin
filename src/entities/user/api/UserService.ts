@@ -10,7 +10,8 @@ class UserService {
             body: JSON.stringify({email, password}),
             headers: {
                 'Content-Type': 'application/json;charset=utf-8',
-            }
+            },
+            credentials: 'include',
         })
         if(!res.ok && res.status === 400){
             const text = await res.text()
@@ -31,7 +32,8 @@ class UserService {
             body: JSON.stringify({email, password}),
             headers: {
                 'Content-Type': 'application/json;charset=utf-8',
-            }
+            },
+            credentials: 'include',
         })
         if(!res.ok && res.status === 400){
             const text = await res.text()
@@ -39,7 +41,8 @@ class UserService {
         }
     }
     
-    async check(){
+    async check(){,
+            credentials: 'include',
         await fetchAuth(process.env.REACT_APP_SERVER_URL_API + '/v1/auth/check')
     }
 }

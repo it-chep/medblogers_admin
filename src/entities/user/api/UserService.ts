@@ -17,6 +17,8 @@ class UserService {
             const text = await res.text()
             throw new AuthError(text)
         }
+        const {token} : {token: string} = await res.json()
+        localStorage.setItem('auth_token', token)
     }
 
     async logout() {
@@ -39,10 +41,11 @@ class UserService {
             const text = await res.text()
             throw new AuthError(text)
         }
+        const {token} : {token: string} = await res.json()
+        localStorage.setItem('auth_token', token)
     }
     
-    async check(){,
-            credentials: 'include',
+    async check(){
         await fetchAuth(process.env.REACT_APP_SERVER_URL_API + '/v1/auth/check')
     }
 }

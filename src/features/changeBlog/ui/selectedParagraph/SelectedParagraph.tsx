@@ -15,6 +15,7 @@ import {KinescopeSvg} from "../../lib/assets/KinescopeSvg";
 import {YouTubeSvg} from "../../lib/assets/YouTubeSvg";
 import {blogService} from "../../../../entities/blog";
 import {useAppSelector} from "../../../../app/store/store";
+import { useGlobalMessageActions } from "../../../../entities/globalMessage";
 
 interface IProps {
     contentRef: RefObject<HTMLDivElement | null>;
@@ -98,7 +99,7 @@ export const SelectedParagraph: FC<IProps & PropsWithChildren> = (
                 const target = e.target as Element;
 
                 if (!target.closest(`img[data-id="${id}"]`)) {
-                    if (!target.closest('figure') || (target.tagName === 'FIGCAPTION')) {
+                    if (!target.closest('img')) {
                         setSelectedFigure('')
                     }
                     img.parentElement?.classList.remove(classes.selected)
@@ -125,6 +126,7 @@ export const SelectedParagraph: FC<IProps & PropsWithChildren> = (
     }, [])
 
     const [isLoading, setIsLoading] = useState<boolean>(false)
+    const {setGlobalMessage} = useGlobalMessageActions()
 
     const sendImage = async (imageData: ArrayBuffer) => {
         try {
@@ -132,6 +134,9 @@ export const SelectedParagraph: FC<IProps & PropsWithChildren> = (
             const res = await blogService.saveImage(blog.blogId, imageData)
             return res
         } catch (e) {
+            if(e instanceof Error){
+                setGlobalMessage({type: 'error', message: e.message})
+            } 
             console.log(e)
         } finally {
             setIsLoading(false)

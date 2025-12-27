@@ -62,12 +62,14 @@ export default function BlogEditPage() {
                     setIsPreview={setIsPreview} 
                 />
                     :
-                <section className={classes.content}>
+                <>
                     <HeaderData  
                         setIsPreview={setIsPreview}
                     />
-                    <ChangeBlog />
-                </section>
+                    <section className={classes.content}>
+                        <ChangeBlog />
+                    </section>
+                </>
             }
         </section>
     )

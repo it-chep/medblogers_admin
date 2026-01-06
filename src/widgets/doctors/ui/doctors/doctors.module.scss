@@ -1,0 +1,39 @@
+
+
+
+.container{
+
+    .loader{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 400px;
+        width: 100%;
+    }
+
+    .table{
+        width: 100%;
+        text-align: start;
+        border-spacing: 0 5px;
+        border-collapse: separate;
+        margin-top: -5px;
+
+        .item{
+            border-bottom: 1px solid var(--black);
+            background-color: #247DCF;
+            height: 64px;
+
+            th{
+                text-align: start;
+                padding: 16px 30px;
+            }
+        }
+
+        .features{
+            display: flex;
+            align-items: center;
+            gap: 40px;
+        }
+    }
+
+}

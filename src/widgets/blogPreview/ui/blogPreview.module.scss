@@ -2,10 +2,13 @@
 
 .wrapper{
     margin: 40px auto 200px auto;
-
     .container{
-        width: 700px;
+        width: 770px;
+        padding: 35px;
+        background-color: #2A2A2A;
         margin: 0 auto;
+        border-radius: 20px;
+
     
         .date{
             color: var(--blue);
@@ -56,7 +59,7 @@
         }
 
         hr{
-            background: #2A2A2A;
+            background: #5e5e5e;
             border: none;
             outline: none;
             height: 2px;
@@ -97,5 +100,6 @@
         gap: 20px;
         border-top: 1px solid var(--gray);
         padding-top: 40px;
+        margin-top: 40px;
     }
 }

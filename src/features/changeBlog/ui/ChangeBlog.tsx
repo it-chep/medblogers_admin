@@ -310,8 +310,6 @@ export const ChangeBlog: FC = () => {
                 }
             }
         }
-
-        
     }
 
     const getSpanOrTextNode = (node: Node) => {

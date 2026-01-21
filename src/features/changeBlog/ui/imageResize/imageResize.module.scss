@@ -1,0 +1,17 @@
+
+
+
+.container{
+    position: absolute;
+    display: flex;
+    top: 0;
+    left: 0;
+    z-index: 111;
+    width: 260px;
+    margin-top: 0;
+    padding: 0 0 20px 20px;
+
+    background-color: var(--dark-gray);
+
+    border-radius: 20px;
+}

@@ -10,6 +10,7 @@ import { ListSvg } from "../../lib/assets/ListSvg";
 import { ListNumSvg } from "../../lib/assets/ListNumSvg";
 import { getCurrentRange } from "../../lib/helpers/getCurrentRange";
 import { recoverRange } from "../../lib/helpers/recoverRange";
+import { BlockquoteSvg } from "../../lib/assets/Blockquote";
 
 
 interface IProps {
@@ -24,17 +25,19 @@ export const ChangeParagraph: FC<IProps & PropsWithChildren> = ({range, contentR
         return startContainer?.closest(paragraph);
     }
     
-    const changeParagraph = 'p, h2, h3, ol, ul'
+    const changeParagraph = 'p, h2, h3, ol, ul, blockquote'
 
-    function replaceElem(parentElem: Element, newElemTag: 'p' | 'h2' | 'h3' | 'ol' | 'ul'): boolean {  
+    function replaceElem(parentElem: Element, newElemTag: 'p' | 'h2' | 'h3' | 'ol' | 'ul' | 'blockquote'): boolean {  
         
         const sel = window.getSelection()
         let range: Range | null = null;
 
+        console.log(parentElem.tagName)
+
         if(sel && sel.rangeCount > 0){
             range = sel.getRangeAt(0)
         }
-        if(range && (parentElem.tagName === 'P' || parentElem.tagName === 'H2' || parentElem.tagName === 'H3')){
+        if(range && (parentElem.tagName === 'P' || parentElem.tagName === 'BLOCKQUOTE' || parentElem.tagName === 'H2' || parentElem.tagName === 'H3')){
             
             const {startOffset, startContainer, date} = getCurrentRange(range, parentElem)
 
@@ -69,6 +72,9 @@ export const ChangeParagraph: FC<IProps & PropsWithChildren> = ({range, contentR
             }
             return true
         }
+        else if(newElemTag === 'blockquote'){
+            console.log(1111)
+        }
         return false
     }
 
@@ -98,6 +104,18 @@ export const ChangeParagraph: FC<IProps & PropsWithChildren> = ({range, contentR
         return false
     }
 
+    const onBlockquote = (): boolean => {
+        const sel = window.getSelection()
+        if(sel && sel.rangeCount > 0){
+            const range = sel.getRangeAt(0)
+            const parentElement = getParentElem(range)
+            if(parentElement){
+                return replaceElem(parentElement, 'blockquote')
+            }
+        }
+        return false
+    }
+
     const onH = (tagName: 'h2' | 'h3'): boolean => {
         const sel = window.getSelection()
         if(sel && sel.rangeCount > 0){
@@ -116,6 +134,7 @@ export const ChangeParagraph: FC<IProps & PropsWithChildren> = ({range, contentR
         {name: 'Заголовок 3', paragraph: 'h3', onClick: () => onH('h3'), icon: <H3 />},
         {name: 'Список', paragraph: 'ul', onClick: () => onList('ul'), icon: <ListSvg />},
         {name: 'Нумерованный список', paragraph: 'ol', onClick: () => onList('ol'), icon: <ListNumSvg />},
+        {name: 'Цитаты', paragraph: 'blockquote', onClick: () => onBlockquote(), icon: <BlockquoteSvg />},
     ]
     
     const [selected, setSelected] = useState<{name: string, icon: ReactNode}>({name: lists[0].name, icon: lists[0].icon})

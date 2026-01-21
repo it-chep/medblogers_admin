@@ -20,12 +20,12 @@
         // }
     }
 
-    p, h2, h3, ul, ol {
-        min-height: 1em;
+    p, h2, h3, ul, ol, blockquote {
+        min-height: 1.5rem;
         font-size: 18px;
         margin: 15px 0;
+        line-height: 1.5rem;
         white-space: pre-wrap;
-        line-height: 118%;
     }
     
     h2{
@@ -54,6 +54,23 @@
         }
     }
     
+    blockquote{
+        position: relative;
+        opacity: .7;
+        padding-left: 16px;
+
+        &::before{
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            background-color: #fff;
+            border-radius: 2px;
+            width: 2px;
+        }
+    }
+    
     img{
         max-width: 100%;
         cursor: text;
@@ -72,7 +89,6 @@
         padding-left: 30px;
 
         li{
-            min-height: 1.5em;
             padding: 3px 0;
         }
     }

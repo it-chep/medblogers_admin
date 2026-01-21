@@ -16,6 +16,7 @@ import {YouTubeSvg} from "../../lib/assets/YouTubeSvg";
 import {blogService} from "../../../../entities/blog";
 import {useAppSelector} from "../../../../app/store/store";
 import { useGlobalMessageActions } from "../../../../entities/globalMessage";
+import { BlockquoteSvg } from "../../lib/assets/Blockquote";
 
 interface IProps {
     contentRef: RefObject<HTMLDivElement | null>;
@@ -39,7 +40,7 @@ export const SelectedParagraph: FC<IProps & PropsWithChildren> = (
     const [showVideoInput, setShowVideoInput] = useState(false);
     const [platform, setPlatform] = useState<TVideoPlatform>('vk');
 
-    const setElem = (currentElem: Element, tag: 'p' | 'ul' | 'ol' | 'h2' | 'h3' | 'figure' | 'hr') => {
+    const setElem = (currentElem: Element, tag: 'p' | 'ul' | 'ol' | 'h2' | 'h3' | 'figure' | 'hr' | 'blockquote') => {
         const newP = document.createElement(tag)
         currentElem.insertAdjacentElement('beforebegin', newP)
         return newP
@@ -58,6 +59,14 @@ export const SelectedParagraph: FC<IProps & PropsWithChildren> = (
 
                 setPointer(sel, li)
             }
+        }
+    }
+
+    const onBlockquote = () => {
+        const sel = window.getSelection()
+        if (sel && currentElem) {
+            const newP = setElem(currentElem, 'blockquote')
+            setPointer(sel, newP)
         }
     }
 
@@ -90,16 +99,18 @@ export const SelectedParagraph: FC<IProps & PropsWithChildren> = (
         const imgHandler = () => {
             img.removeEventListener('click', imgHandler)
             const id = img.dataset.id;
-            if (id) {
+            if(id) {
                 setSelectedFigure(id)
                 img.parentElement?.classList.add(classes.selected)
             }
 
             const docHandler = (e: MouseEvent) => {
                 const target = e.target as Element;
-
-                if (!target.closest(`img[data-id="${id}"]`)) {
-                    if (!target.closest('img')) {
+                if(target.closest('#change_header')){
+                    return
+                }
+                if(!target.closest(`img[data-id="${id}"]`)) {
+                    if(!target.closest('img')) {
                         setSelectedFigure('')
                     }
                     img.parentElement?.classList.remove(classes.selected)
@@ -214,6 +225,7 @@ export const SelectedParagraph: FC<IProps & PropsWithChildren> = (
         {name: 'Нумерованный список', paragraph: 'ol', onClick: () => onList('ol'), icon: <ListNumSvg/>},
         {name: 'Изображение', paragraph: 'img', onClick: onImage, icon: <ImageSvg/>},
         {name: 'Разделитеть', paragraph: 'hr', onClick: onHr, icon: <HrSvg/>},
+        {name: 'Цитата', paragraph: 'blockquote', onClick: onBlockquote, icon: <BlockquoteSvg/>},
         {name: 'VK Video', paragraph: 'vk', onClick: () => onVideo('vk'), icon: <VKVideoSvg/>},
         {name: 'YouTube', paragraph: 'vk', onClick: () => onVideo('youtube'), icon: <YouTubeSvg/>},
         {name: 'Kinescope', paragraph: 'vk', onClick: () => onVideo('kinescope'), icon: <KinescopeSvg/>},
@@ -257,7 +269,7 @@ export const SelectedParagraph: FC<IProps & PropsWithChildren> = (
             </Dropdown>
             {
                 contentRef.current && contentRef.current.parentElement && showVideoInput
-                &&
+                    &&
                 createPortal(
                     <section
                         className={classes.videoLink}

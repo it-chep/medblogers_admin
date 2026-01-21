@@ -4,6 +4,8 @@ import { SelectedRange } from "../selectedRange/SelectedRange";
 import { ChangeParagraph } from "../changeParagraph/ChangeParagraph";
 import { BgDiv } from "../bgDiv/BgDiv";
 import { DeleteFigure } from "../deleteFigure/DeleteFigure";
+import { ImageResize } from "../imageResize/ImageResize";
+import { MyInput } from "../../../../shared/ui/myInput";
 
 interface IProps {
     contentRef: RefObject<HTMLDivElement | null>
@@ -39,32 +41,40 @@ export const HeaderChange: FC<IProps> = (
 
     return (
         <section 
-            onMouseDown={e => e.preventDefault()}
             className={classesHeader.header}
+            id="change_header"
         >
             <section className={classesHeader.change}>
-                <ChangeParagraph 
-                    contentRef={contentRef}
-                    range={range}
-                />
-                <SelectedRange 
-                    newSelection={newSelection}
-                    getRange={getRange}
-                    selectionClasses={selectionClasses}
-                    open={open}
-                />
-                <BgDiv  
-                    contentRef={contentRef}
-                    range={range}
-                    newRange={newRange}
-                />
                 {
                     selectedFigure
-                        &&
-                    <DeleteFigure 
-                        selectedFigure={selectedFigure}
-                        setSelectedFigure={setSelectedFigure}
-                    />
+                        ?
+                    <>
+                        <ImageResize 
+                            selectedFigure={selectedFigure}
+                        />
+                        <DeleteFigure 
+                            selectedFigure={selectedFigure}
+                            setSelectedFigure={setSelectedFigure}
+                        />
+                    </>
+                        :
+                    <>
+                        <ChangeParagraph 
+                            contentRef={contentRef}
+                            range={range}
+                        />
+                        <SelectedRange 
+                            newSelection={newSelection}
+                            getRange={getRange}
+                            selectionClasses={selectionClasses}
+                            open={open}
+                        />
+                        <BgDiv  
+                            contentRef={contentRef}
+                            range={range}
+                            newRange={newRange}
+                        />
+                    </>
                 }
             </section>
         </section>

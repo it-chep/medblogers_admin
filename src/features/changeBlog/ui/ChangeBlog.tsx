@@ -1,6 +1,5 @@
 import React, { ClipboardEvent, FC, KeyboardEvent, MouseEvent, useEffect, useRef, useState } from "react";
 import classes from './change.module.scss'
-import { MyInput } from "../../../shared/ui/myInput";
 import { getNodeElement } from "../../../shared/lib/helpers/getNodeElement";
 import { newParagraph } from "../../../shared/lib/helpers/newParagraph";
 import { HeaderChange } from "./headerChange/HeaderChange";
@@ -10,6 +9,7 @@ import { NewParagraph } from "./newParagrpaph/NewParagraph";
 import { useAppSelector } from "../../../app/store/store";
 import { encoder } from "../../../shared/lib/helpers/encoder";
 import { figureClickHandler } from "./VideoPreviewInsert/VideoInsert";
+import { ChangeLocationContent } from "./changeLocationContent/ChangeLocationContent";
 
 type TElementClass = {class: string, text: string, href?: string}
 
@@ -793,7 +793,6 @@ export const ChangeBlog: FC = () => {
                 selectedFigure={selectedFigure}
                 setSelectedFigure={setSelectedFigure}
             />
-
             <section className={classes.wrap}>
                 <div 
                     id="blog_change"

@@ -32,8 +32,6 @@ export const ChangeParagraph: FC<IProps & PropsWithChildren> = ({range, contentR
         const sel = window.getSelection()
         let range: Range | null = null;
 
-        console.log(parentElem.tagName)
-
         if(sel && sel.rangeCount > 0){
             range = sel.getRangeAt(0)
         }
@@ -71,9 +69,6 @@ export const ChangeParagraph: FC<IProps & PropsWithChildren> = ({range, contentR
                 recoverRange(startContainer, startOffset, sel, null, parentElem, list, date)
             }
             return true
-        }
-        else if(newElemTag === 'blockquote'){
-            console.log(1111)
         }
         return false
     }
@@ -176,8 +171,7 @@ export const ChangeParagraph: FC<IProps & PropsWithChildren> = ({range, contentR
                 items={lists.map(l => ({name: l.name, icon: l.icon}))}
                 selected={selected}
                 onSelected={onSelected}
-            >
-            </Dropdown>
+            />
         </section>
     )
 }

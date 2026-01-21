@@ -8,6 +8,9 @@
 
     .selected{
         cursor: pointer;
+        padding: 4px 8px;
+        transition: all .25s ease;
+        border-radius: 5px;
 
         .icon{
             display: flex;
@@ -19,10 +22,18 @@
                 height: 18px;
                 transition: all .2s ease;
 
+                path{
+                    stroke: var(--text-gray);
+                }
+
                 &.open{
                     transform: rotate(180deg);
                 }
             }
+        }
+
+        &:hover{
+            background-color: var(--sign-gray);
         }
     }
 

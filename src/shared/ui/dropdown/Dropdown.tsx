@@ -6,9 +6,12 @@ interface IProps {
     selected?: {name: string, icon: ReactNode};
     onSelected: (item: string) => void;
     open?: boolean;
+    width?: number;
 }
 
-export const Dropdown: FC<IProps & PropsWithChildren> = ({items, selected, onSelected, open: openGlobal, children}) => {
+export const Dropdown: FC<IProps & PropsWithChildren> = (
+    {items, selected, onSelected, open: openGlobal, width, children}
+) => {
 
     const [open, setOpen] = useState<boolean>(false)
 
@@ -56,7 +59,10 @@ export const Dropdown: FC<IProps & PropsWithChildren> = ({items, selected, onSel
                     </section>
                 }
             </section>
-            <ul className={classes.list + (open ? ` ${classes.open}` : '')}>
+            <ul 
+                style={{width}}
+                className={classes.list + (open ? ` ${classes.open}` : '')}
+            >
                 {items.map(item => 
                     <li 
                         key={item.name} 

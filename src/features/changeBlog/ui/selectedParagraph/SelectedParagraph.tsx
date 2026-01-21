@@ -17,6 +17,7 @@ import {blogService} from "../../../../entities/blog";
 import {useAppSelector} from "../../../../app/store/store";
 import { useGlobalMessageActions } from "../../../../entities/globalMessage";
 import { BlockquoteSvg } from "../../lib/assets/Blockquote";
+import { RutubeSvg } from "../../lib/assets/Rutube";
 
 interface IProps {
     contentRef: RefObject<HTMLDivElement | null>;
@@ -219,16 +220,17 @@ export const SelectedParagraph: FC<IProps & PropsWithChildren> = (
     }
 
     const lists: { paragraph: string, name: string, onClick: () => void, icon: ReactNode }[] = [
-        {name: 'Заголовок 2', paragraph: 'h2', onClick: () => onH('h2'), icon: <H2/>},
-        {name: 'Заголовок 3', paragraph: 'h3', onClick: () => onH('h3'), icon: <H3/>},
-        {name: 'Список', paragraph: 'ul', onClick: () => onList('ul'), icon: <ListSvg/>},
-        {name: 'Нумерованный список', paragraph: 'ol', onClick: () => onList('ol'), icon: <ListNumSvg/>},
+        {name: 'Заголовок 2', paragraph: 'h2', onClick: () => onH('h2'), icon: <H2 />},
+        {name: 'Заголовок 3', paragraph: 'h3', onClick: () => onH('h3'), icon: <H3 />},
+        {name: 'Список', paragraph: 'ul', onClick: () => onList('ul'), icon: <ListSvg />},
+        {name: 'Нумерованный список', paragraph: 'ol', onClick: () => onList('ol'), icon: <ListNumSvg />},
         {name: 'Изображение', paragraph: 'img', onClick: onImage, icon: <ImageSvg/>},
         {name: 'Разделитеть', paragraph: 'hr', onClick: onHr, icon: <HrSvg/>},
-        {name: 'Цитата', paragraph: 'blockquote', onClick: onBlockquote, icon: <BlockquoteSvg/>},
-        {name: 'VK Video', paragraph: 'vk', onClick: () => onVideo('vk'), icon: <VKVideoSvg/>},
-        {name: 'YouTube', paragraph: 'vk', onClick: () => onVideo('youtube'), icon: <YouTubeSvg/>},
-        {name: 'Kinescope', paragraph: 'vk', onClick: () => onVideo('kinescope'), icon: <KinescopeSvg/>},
+        {name: 'Цитата', paragraph: 'blockquote', onClick: onBlockquote, icon: <BlockquoteSvg />},
+        {name: 'VK Video', paragraph: 'vk', onClick: () => onVideo('vk'), icon: <VKVideoSvg />},
+        {name: 'YouTube', paragraph: 'youTube', onClick: () => onVideo('youtube'), icon: <YouTubeSvg />},
+        {name: 'Kinescope', paragraph: 'kinescope', onClick: () => onVideo('kinescope'), icon: <KinescopeSvg />},
+        {name: 'Rutube', paragraph: 'rutube', onClick: () => onVideo('rutube'), icon: <RutubeSvg />},
     ]
 
     const onSelected = (name: string) => {

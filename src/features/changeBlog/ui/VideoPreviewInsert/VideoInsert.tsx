@@ -1,10 +1,9 @@
-import { FC, useEffect, useState } from "react";
+import { FC, useState } from "react";
 import classes from './videoInsert.module.scss'
-import classesChange from '../change.module.scss'
 import { LinkInput } from "../linkInput/LinkInput";
 import { setPointer } from "../../../../shared/lib/helpers/setPointer";
 
-export type TVideoPlatform = 'vk' | 'youtube' | 'kinescope';
+export type TVideoPlatform = 'vk' | 'youtube' | 'kinescope' | 'rutube';
 
 interface VideoInsertProps {
     onInsert: (figure: HTMLElement) => void;
@@ -98,6 +97,22 @@ export const VideoInsert: FC<VideoInsertProps> = (
         return null;
     };
 
+    const extractRuTubeVideoId = (url: string): string | null => {
+        const patterns = [
+            /rutube\.ru\/video\/([a-zA-Z0-9]+)\/?/,
+            /rutube\.ru\/play\/embed\/([a-zA-Z0-9]+)\/?/,
+            /rutube\.ru\/embed\/([a-zA-Z0-9]+)\/?/,
+        ];
+        
+        for (const pattern of patterns) {
+            const match = url.match(pattern);
+            if (match) {
+                return match[1];
+            }
+        }
+        return null;
+    };
+
     const isValidUrl = () => {
         switch (platform) {
             case 'vk':
@@ -106,6 +121,8 @@ export const VideoInsert: FC<VideoInsertProps> = (
                 return extractYouTubeVideoId(url) !== null;
             case 'kinescope':
                 return extractKinescopeVideoId(url) !== null;
+            case 'rutube':
+                return extractRuTubeVideoId(url) !== null;
             default:
                 return false;
         }
@@ -119,6 +136,8 @@ export const VideoInsert: FC<VideoInsertProps> = (
                 return "Некорректная ссылка YouTube видео";
             case 'kinescope':
                 return "Некорректная ссылка Kinescope видео";
+            case 'rutube':
+                return "Некорректная ссылка RuTube видео";
             default:
                 return "Некорректная ссылка на видео";
         }
@@ -135,9 +154,34 @@ export const VideoInsert: FC<VideoInsertProps> = (
             case 'kinescope':
                 const kinescopeId = extractKinescopeVideoId(url);
                 return kinescopeId ? `https://kinescope.io/embed/${kinescopeId}` : null;
+            case 'rutube':
+                const rutubeId = extractRuTubeVideoId(url);
+                return rutubeId ? `https://rutube.ru/play/embed/${rutubeId}` : null;
             default:
                 return null;
         }
+    };
+
+    const getIframeAttributes = (): Record<string, string> => {
+        const baseAttributes = {
+            src: getIframeSrc() || '',
+            width: '100%',
+            height: '100%',
+            frameborder: '0',
+            allowfullscreen: '',
+            style: 'width: 100%; height: 100%; border-radius: 8px; border: none;'
+        };
+
+        // Добавляем дополнительные атрибуты для RuTube
+        if (platform === 'rutube') {
+            return {
+                ...baseAttributes,
+                allow: 'fullscreen',
+                title: 'RuTube video player'
+            };
+        }
+
+        return baseAttributes;
     };
 
     const handleInsert = () => {
@@ -160,16 +204,21 @@ export const VideoInsert: FC<VideoInsertProps> = (
         section.classList.add('video-edit')
         figure.append(section)
 
-        section.innerHTML = `
-            <iframe 
-                src="${iframeSrc}" 
-                width="100%" 
-                height="100%"
-                frameborder="0" 
-                allowfullscreen
-                style="width: 100%; height: 100%; border-radius: 8px; border: none;"
-            /></iframe>
-        `
+        // Создаем iframe с нужными атрибутами
+        const iframe = document.createElement('iframe')
+        const attributes = getIframeAttributes()
+        
+        Object.entries(attributes).forEach(([key, value]) => {
+            if (key === 'style') {
+                iframe.style.cssText = value
+            } else if (key === 'allowfullscreen') {
+                iframe.setAttribute('allowfullscreen', value)
+            } else {
+                iframe.setAttribute(key, value)
+            }
+        })
+
+        section.appendChild(iframe)
         
         const figcaption = document.createElement('figcaption')
         figcaption.setAttribute('contenteditable', "true")    

@@ -44,7 +44,13 @@ export const SelectedRange: FC<IProps> = ({getRange, newSelection, selectionClas
     const onSetLink = (elems: ChildNode[]) => {
         if(link){
     
-            const getElementLink = () => elems.filter(e => e.nodeName === 'SPAN')
+            const getElementLink = () => elems.filter(e => {
+                if((e.nodeName === 'SPAN') && (e as HTMLSpanElement).className.includes("link"))
+                    return true
+                return false
+            })
+
+            console.log(elems)
 
             const linkElems = getElementLink()
             

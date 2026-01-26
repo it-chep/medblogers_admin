@@ -1,0 +1,62 @@
+
+
+.wrapper{
+    display: flex;
+    flex-direction: column;
+    padding: 20px 0 7px 0;
+
+    .slider{
+        display: flex;
+        margin-top: 20px;
+        width: 100%;
+        align-items: center;
+        height: 4px;
+        background-color: var(--blue);
+        position: relative;
+        z-index: 9;
+    
+        touch-action: none; /* Блокируем браузерные жесты */
+        user-select: none; /* Запрещаем выделение текста */
+        
+        .inactiveLeft{
+            position: absolute;
+            height: 100%;
+            background-color: var(--light-black);
+            left: 0;
+        }
+    
+        .inactiveRight{
+            position: absolute;
+            z-index: 9;
+            height: 100%;
+            background-color: var(--light-black);
+            right: 0;
+        }
+    
+    
+        .thumb{
+            box-sizing: border-box;
+            background-color: var(--blue);
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            position: absolute;
+    
+            touch-action: none;
+            user-select: none;
+    
+            &.min{
+                left: 0;
+                cursor: grab;
+            }   
+    
+            &.max{
+                right: 0;;
+                z-index: 9;
+                cursor: grab;
+    
+            }
+    
+        }
+    }
+}

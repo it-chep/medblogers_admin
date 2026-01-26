@@ -17,8 +17,33 @@ export interface ISeo {
     prevOG: string;
 }
 
+export interface IBlogDoctor {
+    doctorId: number;
+    doctorName: string;
+}
+
+export interface IBlogCategory {
+    id: number;
+    name: string;
+}
+
+export interface IBlogRequest {
+    blogId: string;
+    slug: string;
+    title: string;
+    body: string;
+    isActive: boolean;
+    previewText: string; 
+    societyPreview: string;
+    additionalSeoText: string;
+    orderingNumber: number;
+    doctorId: number;
+}
+
 export interface IBlog {
     blogId: string;
+    doctor: IBlogDoctor;
+    categories: IBlogCategory[];
     slug: string;
     title: string;
     body: string;

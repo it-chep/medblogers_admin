@@ -11,6 +11,7 @@ import { MyInput } from "../../../../shared/ui/myInput";
 import { blogService, useBlogActions } from "../../../../entities/blog";
 import { AuthError } from "../../../../shared/err/AuthError";
 import { useUserActions } from "../../../../entities/user";
+import { IBlogRequest } from "../../../../entities/blog/model/types";
 
 
 export const HeaderInfo: FC = () => {
@@ -32,7 +33,7 @@ export const HeaderInfo: FC = () => {
             const elem = document.getElementById("blog_change")
             if(elem){
                 const body = decoder(elem, true)
-                await blogService.updateBlog(blog, body)
+                await blogService.updateBlog({...blog, doctorId: blog.doctor.doctorId}, body)
                 if(message){
                     setGlobalMessage({type: 'ok', message: 'Сохранено'})
                 }

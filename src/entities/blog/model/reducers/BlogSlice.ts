@@ -1,10 +1,15 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { IBlog, IBlogState } from "../types";
+import { IBlog, IBlogCategory, IBlogState } from "../types";
 
 
 const BlogInitialState: IBlogState = {
     blog: {
         title: '',
+        doctor: {
+            doctorId: -1,
+            doctorName: '',
+        },
+        categories: [],
         slug: '',
         blogId: '',
         body: '',
@@ -48,6 +53,19 @@ export const BlogSlice = createSlice({
         },
         setIsActive(state, action: PayloadAction<boolean>){
             state.blog.isActive = action.payload;
+        },
+        setCategory(state, action: PayloadAction<IBlogCategory>){
+            const copy = state.blog.categories;
+            copy.push(action.payload)
+            state.blog.categories = copy;
+        },
+        deleteCategory(state, action: PayloadAction<number>){
+            const copy: IBlogCategory[] = JSON.parse(JSON.stringify(state.blog.categories))
+            const targetInd = copy.findIndex(c => c.id === action.payload)
+            if(targetInd >= 0){
+                copy.splice(targetInd, 1)
+                state.blog.categories = copy;
+            }
         },
     }
 })

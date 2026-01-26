@@ -96,7 +96,6 @@ export const decoder = (elem: Element, deleteLastP?: boolean): string => {
                     break;
                 }
             } else {
-                console.log(333, child)
                 // Как только нашли не-p элемент - прекращаем удаление
                 break;
             }

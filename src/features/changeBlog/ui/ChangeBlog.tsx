@@ -9,7 +9,6 @@ import { NewParagraph } from "./newParagrpaph/NewParagraph";
 import { useAppSelector } from "../../../app/store/store";
 import { encoder } from "../../../shared/lib/helpers/encoder";
 import { figureClickHandler } from "./VideoPreviewInsert/VideoInsert";
-import { ChangeLocationContent } from "./changeLocationContent/ChangeLocationContent";
 
 type TElementClass = {class: string, text: string, href?: string}
 
@@ -246,16 +245,28 @@ export const ChangeBlog: FC = () => {
 
         newRange()
         if(e.key === 'Backspace'){
-            if(!contentRef.current?.lastChild?.textContent){
-                const lc = contentRef.current?.lastChild
-                setTimeout(() => {
-                    if(!lc?.parentElement){
-                        newP()
-                    }
-                })
+            const lastChild = contentRef.current?.lastChild;
+            if(!lastChild?.textContent){
+                const prevLastChild = lastChild?.previousSibling;
+                if(prevLastChild?.textContent){
+                    const lc = contentRef.current?.lastChild
+                    setTimeout(() => {
+                        if(!lc?.parentElement){
+                            newP()
+                        }
+                    })
+                }
             }
             
             setTimeout(clearDivAfterDeleteList)
+
+            const targetDeleteBlock = currentSel?.commonAncestorContainer;
+            if(!targetDeleteBlock?.textContent){
+                if(targetDeleteBlock?.ELEMENT_NODE){
+                    const targetDeleteBlockElem = targetDeleteBlock as Element;
+                    targetDeleteBlockElem.remove()
+                }
+            }
 
             if(contentRef.current?.childNodes.length === 1 && !contentRef.current.firstElementChild?.textContent){
                 e.preventDefault();
@@ -346,7 +357,6 @@ export const ChangeBlog: FC = () => {
         let currentNode: Node | null = parent.firstChild;
 
         const elems: Element[] = [];
-        
         while (currentNode){
             if(range.intersectsNode(currentNode)){
                 if(currentNode.nodeType === Node.TEXT_NODE){
@@ -447,7 +457,13 @@ export const ChangeBlog: FC = () => {
                 newSpan.className = elementClass.class;
                 newSpan.textContent = elementClass.text;
                 if(elementClass.href){
-                    newSpan.dataset.href = elementClass.href;
+                    console.log(elementClass)
+                    if(elementClass.class.includes('link')){
+                        newSpan.dataset.href = elementClass.href;
+                    }
+                    else{
+                        delete newSpan.dataset.href
+                    }
                 }
                 fragments.appendChild(newSpan)
             }

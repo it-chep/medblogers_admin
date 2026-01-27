@@ -20,60 +20,7 @@
         // }
     }
 
-    p, h2, h3, ul, ol {
-        min-height: 1em;
-        font-size: 18px;
-        margin: 15px 0;
-        white-space: pre-wrap;
-        line-height: 118%;
-    }
-    
-    h2{
-        font-size: 22px;
-    }
-        
-    h3{
-        font-size: 20px;
-    }
-
-    hr{
-        background: #2A2A2A;
-        border: none;
-        outline: none;
-        height: 2px;
-        width: 100%;
-        margin: 15px 0;
-    }
-
-    figure{
-        margin: 20px 0;
-        
-        img{
-            display: block;
-            margin: 0 auto;
-        }
-    }
-    
     img{
-        max-width: 100%;
         cursor: text;
-    }
-
-    figcaption{
-        min-height: 1.5em;
-        font-size: 0.8rem;
-        margin-top: 4px;
-        color: #676767;
-        text-align: center;
-        outline: none;
-    }
-
-    ul, ol{
-        padding-left: 30px;
-
-        li{
-            min-height: 1.5em;
-            padding: 3px 0;
-        }
     }
 }

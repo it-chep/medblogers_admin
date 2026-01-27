@@ -1,5 +1,5 @@
 import { fetchAuth } from "../../../shared/api/ApiService"
-import { IBlog, IBlogItem, IImage } from "../model/types"
+import { IBlog, IBlogCategory, IBlogItem, IBlogRequest, IImage } from "../model/types"
 
 
 class BlogService {
@@ -51,7 +51,7 @@ class BlogService {
         return blog
     }
 
-    async updateBlog(blog: IBlog, body: string){
+    async updateBlog(blog: IBlogRequest, body: string){
         await fetchAuth(process.env.REACT_APP_SERVER_URL_API + `/v1/admin/blog/${blog.blogId}/update`, {
             method: "POST",
             body: JSON.stringify({...blog, body}),
@@ -95,6 +95,31 @@ class BlogService {
         return blogs
     }
 
+    async addCategory(blogId: string, categoryId: number){
+        await fetchAuth(process.env.REACT_APP_SERVER_URL_API + `/v1/admin/blog/${blogId}/add_category`, {
+            method: "POST",
+            body: JSON.stringify({blogId, categoryId}),
+            headers: {
+                'Content-Type': 'application/json;charset=utf-8',
+            }
+        })
+    }
+    
+    async deleteCategory(blogId: string, categoryId: number){
+        await fetchAuth(process.env.REACT_APP_SERVER_URL_API + `/v1/admin/blog/${blogId}/delete_category`, {
+            method: "POST",
+            body: JSON.stringify({blogId, categoryId}),
+            headers: {
+                'Content-Type': 'application/json;charset=utf-8',
+            }
+        })
+    }
+
+    async getCategories(): Promise<IBlogCategory[]>{
+        const res = await fetchAuth(process.env.REACT_APP_SERVER_URL_API + `/v1/admin/blog/categories`)
+        const {categories}: {categories: IBlogCategory[]} = await res.json()
+        return categories
+    }
 }
 
 export const blogService = new BlogService()

@@ -35,7 +35,7 @@ export const DeleteFigure: FC<IProps> = ({selectedFigure, setSelectedFigure}) =>
                 setGlobalMessage({message: e.message, type: 'error'})
             }
             else{
-                setGlobalMessage({message: 'Ошибка при получении статьи', type: 'error'})
+                setGlobalMessage({message: 'Ошибка при удалении фотографии', type: 'error'})
             }
         }
         finally{

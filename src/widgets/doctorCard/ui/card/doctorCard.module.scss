@@ -1,0 +1,35 @@
+
+
+
+.container{
+    display: flex;
+    background-color: #1E1E1E;
+    border-radius: 20px;
+    padding: 20px 20px 80px 20px;
+    overflow: hidden;
+    gap: 20px;
+
+    .aside{
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+
+        .isActive{
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+    }
+
+    &.loader{
+        padding: 20px;
+        .aside{
+            min-width: 300px;
+            height: 350px;
+        }
+        .main{
+            height: 500px;
+            width: 100%;
+        }
+    }
+}

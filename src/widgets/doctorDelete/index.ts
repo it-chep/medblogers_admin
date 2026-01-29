@@ -1,0 +1,1 @@
+export { DoctorDelete } from "./ui/DoctorDelete";

@@ -1,16 +1,19 @@
 import {FC, useEffect, useState} from "react";
-import {DoctorItem, doctorService, IDoctorItem} from "../../../../entities/doctor/doctors";
+import {DoctorItem, doctorService, IDoctorItem} from "../../../../entities/doctor";
 import classes from './doctors.module.scss'
 import {LoaderSpinner} from "../../../../shared/ui/spinner";
 // import { ChangeDoctorActive } from "../../../features/changeDoctorActive";
 import {useGlobalMessageActions} from "../../../../entities/globalMessage";
 import {useUserActions} from "../../../../entities/user";
 import {AuthError} from "../../../../shared/err/AuthError";
+import { ChangeDoctorActive } from "../../../../features/changeDoctorActive";
+import { SearchItems } from "../../../../features/search";
 
 export const Doctors: FC = () => {
 
     const [isLoading, setIsLoading] = useState<boolean>(true)
     const [doctors, setDoctors] = useState<IDoctorItem[]>([])
+    const [searchDoctors, setSearchDoctors] = useState<IDoctorItem[]>([])
     const {setGlobalMessage} = useGlobalMessageActions()
     const {setIsAuth} = useUserActions()
 
@@ -36,10 +39,10 @@ export const Doctors: FC = () => {
         getData()
     }, [])
 
-    const setIsActive = (doctorID: number) => {
+    const setIsActive = (doctorId: number) => {
         return (isActive: boolean) => {
-            setDoctors((doctors: any[]) => doctors.map(doctor => {
-                if (doctor.doctorID === doctorID) {
+            setDoctors(doctors => doctors.map(doctor => {
+                if (doctor.id === doctorId) {
                     doctor.isActive = isActive;
                 }
                 return doctor
@@ -52,32 +55,44 @@ export const Doctors: FC = () => {
             {
                 isLoading
                     ?
-                    <section className={classes.loader}><LoaderSpinner/></section>
+                <section className={classes.loader}><LoaderSpinner/></section>
                     :
-                    doctors.length > 0
+                doctors.length > 0
                     &&
+                <>
+                    <section className={classes.search}>
+                        <SearchItems 
+                            items={doctors}
+                            setItemsSearch={setSearchDoctors}
+                        />
+                    </section>
                     <table className={classes.table}>
                         <thead>
-                        <tr className={classes.item}>
-                            <th>ID</th>
-                            <th>ФИО</th>
-                            <th>ФОТО ?</th>
-                            <th>Статус публикации</th>
-                            <th></th>
-                        </tr>
+                            <tr className={classes.item}>
+                                <th>ID</th>
+                                <th>ФИО</th>
+                                <th>ФОТО ?</th>
+                                <th>Статус публикации</th>
+                                <th></th>
+                            </tr>
                         </thead>
                         <tbody className={classes.list}>
-                        {doctors.map((doctor, ind) =>
-                            <DoctorItem
-                                ind={ind + 1}
-                                key={doctor.id}
-                                doctorItem={doctor}
-                            >
-
-                            </DoctorItem>
-                        )}
+                            {searchDoctors.map((doctor, ind) =>
+                                <DoctorItem
+                                    ind={ind + 1}
+                                    key={doctor.id}
+                                    doctorItem={doctor}
+                                >
+                                    <ChangeDoctorActive 
+                                        isActive={doctor.isActive}
+                                        doctorId={doctor.id}
+                                        setIsActive={setIsActive(doctor.id)}
+                                    />
+                                </DoctorItem>
+                            )}
                         </tbody>
                     </table>
+                </>
             }
         </section>
     )

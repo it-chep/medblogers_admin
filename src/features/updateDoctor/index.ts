@@ -1,0 +1,1 @@
+export { UpdateDoctor } from "./ui/UpdateDoctor";

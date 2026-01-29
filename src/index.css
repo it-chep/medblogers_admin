@@ -22,15 +22,20 @@ body {
   --light-black: #242424;
 
   --dark-gray: #464646;
-  --sign-gray: #606060;
+  --sign-gray: #aeaeae;
   --gray: #ffffff80;
+  --light-gray: #cbcbcb;
 
-  --dark-background: #161616;
+  --dark-background: #1E1E1E;
 
   --text-gray: #F2F2F2;
 
   --link-blue: #007AFF;
   --hover-link-blue: #0053AE;
+
+  --red: #FF0000;
+  --red-dark: #8b0000;
+  --red-hover: #dd0303;
 
   --time-input: .15s;
 

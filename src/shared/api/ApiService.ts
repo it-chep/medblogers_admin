@@ -1,5 +1,6 @@
 // import { AuthError } from "../lib/helpers/AuthError";
 
+import { findMock } from "../../app/mocks/Mocks";
 import { AuthError } from "../err/AuthError";
 import { IValidationError } from "../model/types";
 
@@ -56,6 +57,13 @@ export async function handleUnauthorized(requestFn: () => Promise<Response>): Pr
 
 export const fetchAuth = async (url: string, init?: RequestInit, isRetry?: boolean): Promise<Response> => {
     const newInit: RequestInit = {...init};
+
+    if(process.env.REACT_APP_USE_MOCK === 'true'){
+        const res = await findMock(url)
+        if(res){
+            return res as Response
+        }
+    }
 
     newInit.headers = {
         ...newInit.headers,

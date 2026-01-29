@@ -1,0 +1,63 @@
+
+
+.container{
+    display: flex;
+    align-items: center;
+    width: 100%;
+    min-height: 28px;
+    gap: 4px;
+
+    .sign{
+        max-width: 260px;
+    }
+
+    .input{
+        width: 100%;
+        outline: none;
+        border: none;
+        color: #f2f2f2;
+        background-color: transparent;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        padding: 4px 10px;
+        border-radius: 6px;
+        font-size: 15px;
+        
+        &:focus{
+            border: 1px solid var(--blue);
+        }
+    }
+    
+    .value{
+        display: flex;
+        align-items: center;
+        color: var(--text-gray);
+    }
+
+    .editSvg{
+        cursor: pointer;
+        fill: #c9c9c9;
+        transition: all .15s ease;
+        margin-left: 12px;
+
+        &:hover{
+            fill: #ffffff;
+        }
+    }
+    
+    .accept{
+        display: flex;
+        gap: 3px;
+        align-items: center;
+        margin-left: 16px;
+        
+        >svg{
+            cursor: pointer;
+            stroke: #c9c9c9;
+            transition: all .15s ease;
+
+            &:hover{
+                stroke: #ffffff;
+            }
+        }
+    }
+}

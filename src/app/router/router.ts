@@ -4,6 +4,7 @@ import {
     BLOG_UPDATE_ROUTE,
     BLOGS_ROUTE,
     DOCTORS_ROUTE,
+    DOCTORS_UPDATE_ROUTE,
     FREELANCERS_ROUTE,
     HOME_ROUTE,
     LOGIN_ROUTE,
@@ -14,6 +15,7 @@ import BlogsPage from "../../pages/blogs/Blogs";
 import BlogEditPage from "../../pages/blogEdit/BlogEdit"
 import AuthPage from "../../pages/auth/Auth";
 import DoctorsPage from "../../pages/doctors/Doctors";
+import DoctorPage from "../../pages/doctor/DoctorPage";
 // import FreelancersPage from "../../pages/freelancers/Freelancers";
 
 export const router: RouteObject[] = [
@@ -28,6 +30,10 @@ export const router: RouteObject[] = [
             {
                 path: DOCTORS_ROUTE.path,
                 Component: DoctorsPage
+            },
+            {
+                path: DOCTORS_UPDATE_ROUTE.path,
+                Component: DoctorPage
             },
             // {
             //     path: FREELANCERS_ROUTE.path,

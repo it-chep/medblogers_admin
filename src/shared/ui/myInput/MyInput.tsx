@@ -39,9 +39,13 @@ export const MyInput: FC<IProps & ComponentProps<'input'> & PropsWithChildren> =
 
     return (
         <section className={classes.inputBox}>
-            <section className={classes.sign}>
-                {sign}&nbsp;
-            </section>
+            {
+                sign
+                    &&
+                <section className={classes.sign}>
+                    {sign}
+                </section>
+            }
             <section ref={refWrap} className={classes.wrap}>
                 <input 
                     {...props}

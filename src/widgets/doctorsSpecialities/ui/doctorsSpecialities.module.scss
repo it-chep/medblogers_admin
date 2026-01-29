@@ -1,6 +1,7 @@
 
 
 
+
 .container{
 
     .loader{
@@ -12,7 +13,15 @@
     }
 
     .search{
+        display: flex;
+        align-items: center;
+        gap: 40px;
         margin: 10px 0;
+
+        .add{
+            min-width: 280px;
+            height: 40px;
+        }
     }
 
     .table{

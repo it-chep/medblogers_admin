@@ -11,7 +11,7 @@ export function Search<T extends {name: string}>({items, setItemsSearch}: IProps
     const [value, setValue] = useState<string>('')
 
     const searchItems = useMemo(() => {
-        return items.filter(item => item.name.includes(value))
+        return items.filter(item => item.name.toLocaleLowerCase().includes(value.toLocaleLowerCase()))
     }, [value, items])
 
     useEffect(() => {

@@ -1,3 +1,5 @@
+export { SpecialityItem as SpecialityItemDoctor } from "./ui/specialityItem/SpecialityItem";
+export { CityItem as CityItemDoctor } from "./ui/cityItem/CityItem";
 export { SubscriberData } from "./ui/subscriberData/SubscriberLink";
 export { useDoctorActions } from "./lib/hooks/useDoctorActions";
 export {default as doctorReducer} from './model/reducers/DoctorSlice'

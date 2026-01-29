@@ -23,16 +23,6 @@
         width: 260px;
     }
 
-    .copy{
-        color: var(--blue);
-        cursor: pointer;
-        transition: all .15s ease;
-
-        &:hover{
-            color: var(--blue-hover);
-        }
-    }
-
     .link{
         min-width: 220px;
         a{

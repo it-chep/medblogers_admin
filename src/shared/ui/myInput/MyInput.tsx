@@ -9,12 +9,14 @@ interface IProps{
     onBlur?: () => void;
     setValue: (value: string) => void;
     isLoading?: boolean;
+    error?: string;
     setError?: (err: string) => void;
     sign?: string;
+    
 }
 
 export const MyInput: FC<IProps & ComponentProps<'input'> & PropsWithChildren> = (
-    {value, setValue, typeInput, onBlur = () => {}, setError = () => {}, sign,  children, ...props}
+    {value, setValue, typeInput, onBlur = () => {}, error, setError = () => {}, sign,  children, ...props}
 ) => {
 
     const refWrap = useRef<HTMLDivElement>(null)
@@ -38,25 +40,28 @@ export const MyInput: FC<IProps & ComponentProps<'input'> & PropsWithChildren> =
     }
 
     return (
-        <section className={classes.inputBox}>
-            {
-                sign
-                    &&
-                <section className={classes.sign}>
-                    {sign}
+        <section className={classes.wrapper}>
+            <section className={classes.inputBox}>
+                {
+                    sign
+                        &&
+                    <section className={classes.sign}>
+                        {sign}
+                    </section>
+                }
+                <section ref={refWrap} className={classes.wrap}>
+                    <input 
+                        {...props}
+                        onFocus={onFocus}
+                        onBlur={onBlurInput}
+                        type={typeInput || 'text'} 
+                        value={value} 
+                        onChange={e => setValueWrap(e.target.value)}
+                    />
+                    {children}
                 </section>
-            }
-            <section ref={refWrap} className={classes.wrap}>
-                <input 
-                    {...props}
-                    onFocus={onFocus}
-                    onBlur={onBlurInput}
-                    type={typeInput || 'text'} 
-                    value={value} 
-                    onChange={e => setValueWrap(e.target.value)}
-                />
-                {children}
             </section>
+            {error && <span className={classes.errorText}>*{error}</span> }
         </section>
     )
 }

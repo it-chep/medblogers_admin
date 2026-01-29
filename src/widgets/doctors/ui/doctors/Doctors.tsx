@@ -20,8 +20,8 @@ export const Doctors: FC = () => {
     const getData = async () => {
         try {
             setIsLoading(true)
-            const DoctorsRes = await doctorService.getDoctors()
-            setDoctors(DoctorsRes)
+            const doctorsRes = await doctorService.getDoctors()
+            setDoctors(doctorsRes)
         } catch (e) {
             console.log(e)
             if (e instanceof AuthError) {

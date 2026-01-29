@@ -1,0 +1,1 @@
+export { AddDoctorsSpecialities } from "./ui/AddDoctorsSpecialities";

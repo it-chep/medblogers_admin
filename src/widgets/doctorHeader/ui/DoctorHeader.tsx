@@ -2,9 +2,9 @@ import { FC } from "react";
 import classes from './doctorHeader.module.scss'
 import { ButtonBlock } from "../../../shared/ui/buttonBlock/ButtonBlock";
 import { useNavigate } from "react-router-dom";
-import { DOCTORS_ROUTE } from "../../../app/router/routes";
 import { useAppSelector } from "../../../app/store/store";
 import { UpdateDoctor } from "../../../features/updateDoctor";
+import { DOCTORS_ROUTE } from "../../../app/router/doctor/doctorRoutes";
 
 interface IProps {
     doctorId: number;

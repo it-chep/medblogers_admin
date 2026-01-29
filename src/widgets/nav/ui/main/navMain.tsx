@@ -1,7 +1,8 @@
 import { FC } from "react"
 import classes from './navMain.module.scss'
-import { BLOGS_ROUTE, DOCTORS_ROUTE, FREELANCERS_ROUTE, HOME_ROUTE } from "../../../../app/router/routes";
+import { BLOGS_ROUTE, FREELANCERS_ROUTE, HOME_ROUTE } from "../../../../app/router/routes";
 import { Link, useLocation } from "react-router-dom";
+import { DOCTORS_CITIES_ROUTE, DOCTORS_ROUTE } from "../../../../app/router/doctor/doctorRoutes";
 
 type INav = {
     path: string;
@@ -19,7 +20,7 @@ export const NavMain: FC = () => {
         FREELANCERS_ROUTE,
     ]   
 
-    if(!navs.find(nav => nav.path === pathname)){
+    if(!navs.find(nav => pathname.includes(nav.path))){
         return <></>
     }
 
@@ -30,7 +31,7 @@ export const NavMain: FC = () => {
                     <Link
                         to={nav.path}
                         key={nav.path}
-                        className={classes.item + (pathname === nav.path ? ` ${classes.selected}` : '')}
+                        className={classes.item + ((nav.path === '/') ? '' : (pathname.includes(nav.path)) ? ` ${classes.selected}` : '')}
                     >
                         {nav.name}
                     </Link>

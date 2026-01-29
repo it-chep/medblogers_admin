@@ -1,58 +1,66 @@
 
 
-.inputBox{
-    display: flex;
-    align-items: center;
+.wrapper{
     width: 100%;
-    gap: 6px;
-    
-    transition: all var(--time-input) ease;
 
-
-    .sign{
-        color: #d8d8d8;
-        text-wrap: nowrap;
-    }
-    
-    .wrap{
+    .inputBox{
         display: flex;
-        justify-content: space-between;
         align-items: center;
-        gap: 10px;
         width: 100%;
-        border: 1px solid rgba(255, 255, 255, 0.2);
-        padding: 0 10px;
-        border-radius: 6px;
-            
-        &.hightlight{
-            border: 1px solid var(--blue);
+        gap: 6px;
+        
+        transition: all var(--time-input) ease;
+    
+    
+        .sign{
+            color: #d8d8d8;
+            text-wrap: nowrap;
+        }
+        
+        .wrap{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 10px;
+            width: 100%;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 0 10px;
+            border-radius: 6px;
+                
+            &.hightlight{
+                border: 1px solid var(--blue);
+            }
+        }
+    
+        input{
+            width: 100%;
+            background-color: transparent;
+            border: none;
+            outline: none;
+            color: #fff;
+            height: 40px;
+            font-size: 14px;
+        }
+                
+        input[type="number"]::-webkit-inner-spin-button,
+        input[type="number"]::-webkit-outer-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+    
+        /* Для Firefox */
+        input[type="number"] {
+            -moz-appearance: textfield;
+        }
+    
+        /* Для IE и Edge */
+        input[type="number"]::-ms-clear {
+            display: none;
         }
     }
-
-    input{
-        width: 100%;
-        background-color: transparent;
-        border: none;
-        outline: none;
-        color: #fff;
-        height: 40px;
+    
+    .errorText{
+        color: #ff4141;
         font-size: 14px;
-    }
-
-
-    input[type="number"]::-webkit-inner-spin-button,
-    input[type="number"]::-webkit-outer-spin-button {
-        -webkit-appearance: none;
-        margin: 0;
-    }
-
-    /* Для Firefox */
-    input[type="number"] {
-        -moz-appearance: textfield;
-    }
-
-    /* Для IE и Edge */
-    input[type="number"]::-ms-clear {
-        display: none;
-    }
+   }            
 }

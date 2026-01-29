@@ -29,17 +29,6 @@ export const REGISTRATION_ROUTE: IRoute = {
     path: '/registration'
 }
 
-// Doctors
-export const DOCTORS_ROUTE: IRoute = {
-    name: 'Врачи',
-    path: '/doctors'
-}
-
-export const DOCTORS_UPDATE_ROUTE: IRoute = {
-    name: 'Обновление врача',
-    path: '/doctors/:id'
-}
-
 // Freelancers
 export const FREELANCERS_ROUTE: IRoute = {
     name: 'Помощники',

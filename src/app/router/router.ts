@@ -3,8 +3,6 @@ import App from "../../App";
 import {
     BLOG_UPDATE_ROUTE,
     BLOGS_ROUTE,
-    DOCTORS_ROUTE,
-    DOCTORS_UPDATE_ROUTE,
     FREELANCERS_ROUTE,
     HOME_ROUTE,
     LOGIN_ROUTE,
@@ -14,8 +12,12 @@ import HomePage from "../../pages/home/Home";
 import BlogsPage from "../../pages/blogs/Blogs";
 import BlogEditPage from "../../pages/blogEdit/BlogEdit"
 import AuthPage from "../../pages/auth/Auth";
-import DoctorsPage from "../../pages/doctors/Doctors";
+import DoctorsPage from "../../pages/doctors/doctors/Doctors";
 import DoctorPage from "../../pages/doctor/DoctorPage";
+import { DOCTORS_CITIES_ROUTE, DOCTORS_ROUTE, DOCTORS_SPECIALITIES_ROUTE, DOCTORS_UPDATE_ROUTE } from "./doctor/doctorRoutes";
+import DoctorsLayoutPage from "../../pages/doctors/DoctorsLayout";
+import DoctorsCitiesPage from "../../pages/doctors/cities/DoctorsCititesPage";
+import DoctorsSpecialitiesPage from "../../pages/doctors/specialities/DoctorsCititesPage";
 // import FreelancersPage from "../../pages/freelancers/Freelancers";
 
 export const router: RouteObject[] = [
@@ -29,7 +31,21 @@ export const router: RouteObject[] = [
             },
             {
                 path: DOCTORS_ROUTE.path,
-                Component: DoctorsPage
+                Component: DoctorsLayoutPage,
+                children: [
+                    {
+                        path: DOCTORS_ROUTE.path,
+                        Component: DoctorsPage
+                    },
+                    {
+                        path: DOCTORS_CITIES_ROUTE.path,
+                        Component: DoctorsCitiesPage
+                    },
+                    {
+                        path: DOCTORS_SPECIALITIES_ROUTE.path,
+                        Component: DoctorsSpecialitiesPage
+                    }
+                ]
             },
             {
                 path: DOCTORS_UPDATE_ROUTE.path,

@@ -160,6 +160,26 @@ class DoctorService {
         return cities
     }
 
+    async addCity(name: string) {
+        await fetchAuth(process.env.REACT_APP_SERVER_URL_API + `/v1/admin/doctors/cities/create`, {
+            method: "POST",
+            body: JSON.stringify({name}),
+            headers: {
+                'Content-Type': 'application/json;charset=utf-8',
+            }
+        })
+    }
+
+    async addSpeciality(name: string) {
+        await fetchAuth(process.env.REACT_APP_SERVER_URL_API + `/v1/admin/doctors/specialities/create`, {
+            method: "POST",
+            body: JSON.stringify({name}),
+            headers: {
+                'Content-Type': 'application/json;charset=utf-8',
+            }
+        })
+    }
+
     async getSpecialities(): Promise<ISpecialityItemDoctor[]> {
         const res = await fetchAuth(process.env.REACT_APP_SERVER_URL_API + `/v1/admin/doctors/specialities`)
         const {specialities}: { specialities: ISpecialityItem[] } = await res.json()

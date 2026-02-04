@@ -1,7 +1,7 @@
 const url = process.env.REACT_APP_SERVER_URL_API
 
 export const FreelancersMocks: {[key: string]: any} = {
-    [`${url}/v1/admin/freelancer/cooperations`]: {
+    [`${url}/v1/admin/freelancer/cooperation_types`]: {
         cooperations: [
             {
                 id: 1,
@@ -119,7 +119,7 @@ export const FreelancersMocks: {[key: string]: any} = {
             },
         ]
     },
-    [`${url}/v1/admin/freelancer/additional_cities/:doctorId`]: { // 
+    [`${url}/v1/admin/freelancer/:freelancerId/additional_cities`]: { // 
         additionalCities: [
             {
                 id: 1,
@@ -169,7 +169,7 @@ export const FreelancersMocks: {[key: string]: any} = {
             }
         ]
     },
-    [`${url}/v1/admin/freelancer/additional/specialities`]: { //
+    [`${url}/v1/admin/freelancer/:freelancerId/additional_specialities`]: { //
         additionalSpecialities: [
             {
                 id: 3,

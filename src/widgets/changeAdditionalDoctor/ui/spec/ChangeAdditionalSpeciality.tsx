@@ -27,7 +27,7 @@ export const ChangeAdditionalSpecialityDoctor: FC<IProps> = ({doctorId}) => {
         try {
             setIsLoading(true)
             const specialitiesDoctorRes = await doctorService.getAdditionalSpecialitiesDoctor(doctorId)
-            const specialitiesRes = await doctorService.getAdditionalSpecialities()
+            const specialitiesRes = await doctorService.getSpecialities()
             setSpecialitiesDoctor(specialitiesDoctorRes)
             setSpecialities(specialitiesRes)
         } catch (e) {

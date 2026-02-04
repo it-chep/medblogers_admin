@@ -28,6 +28,8 @@ export const ChangeAdditionalCityFreelancer: FC<IProps> = ({freelancerId}) => {
             setIsLoading(true)
             const citiesFreelancerRes = await freelancerService.getAdditionalCitiesFreelancer(freelancerId)
             const citiesRes = await freelancerService.getCities()
+            console.log(citiesFreelancerRes, citiesRes)
+
             setCities(citiesRes)
             setCitiesFreelancer(citiesFreelancerRes)
         } catch (e) {

@@ -36,15 +36,15 @@ export const AddPriceList: FC<IProps> = ({freelancerId, priceList, setPriceList}
     const addReq = async () => {
         try {
             setIsLoading(true)
-            // const priceListItemId = await freelancerService.addPriceList(freelancerId, service, amount)
-            return 44
+            const priceListItemId = await freelancerService.addPriceList(freelancerId, service, amount)
+            return priceListItemId
         } catch (e) {
             console.log(e)
             if (e instanceof AuthError) {
                 setIsAuth(false)
                 setGlobalMessage({message: e.message, type: 'error'})
             } else {
-                setGlobalMessage({message: 'Ошибка при добавлении услуги в прайс лист', type: 'error'})
+                setGlobalMessage({message: 'Ошибка при добавлении услуги в прайс-лист', type: 'error'})
             }
         } finally {
             setIsLoading(false)

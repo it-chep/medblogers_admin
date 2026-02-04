@@ -27,7 +27,6 @@ export const ChangeRecommendation: FC<IProps> = ({freelancerId}) => {
     const getData = async () => {
         try {
             setIsLoading(true)
-            await new Promise(resolve => setTimeout(resolve, 3000))
             const recommendationsRes = await freelancerService.getRecommendations(freelancerId)
             const doctorsRes = await doctorService.getDoctors()
             setRecommendations(recommendationsRes)
@@ -52,14 +51,14 @@ export const ChangeRecommendation: FC<IProps> = ({freelancerId}) => {
     const add = async (specialityId: number) => {
         try {
             setIsLoadingGlobal(true)
-            await freelancerService.addAdditionalSpeciality(freelancerId, specialityId)
+            await freelancerService.addRecommendation(freelancerId, specialityId)
         } catch (e) {
             console.log(e)
             if (e instanceof AuthError) {
                 setIsAuth(false)
                 setGlobalMessage({message: e.message, type: 'error'})
             } else {
-                setGlobalMessage({message: 'Ошибка при добавлении доп специальности', type: 'error'})
+                setGlobalMessage({message: 'Ошибка при добавлении рекомендации', type: 'error'})
             }
             throw e
         } finally {

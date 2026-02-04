@@ -10,12 +10,6 @@ class DoctorService {
         return additionalCities
     }
 
-    async getAdditionalSpecialities(): Promise<ISpecialityItem[]> {
-        const res = await fetchAuth(process.env.REACT_APP_SERVER_URL_API + `/v1/admin/doctor/additional/specialities`)
-        const {additionalSpecialities} : {additionalSpecialities: ISpecialityItem[]} = await res.json()
-        return additionalSpecialities
-    }
-
     async getAdditionalSpecialitiesDoctor(doctorId: number): Promise<ISpecialityItem[]> {
         const res = await fetchAuth(process.env.REACT_APP_SERVER_URL_API + `/v1/admin/doctor/${doctorId}/additional_specialities`)
         const {additionalSpecialities} : {additionalSpecialities: ISpecialityItem[]} = await res.json()

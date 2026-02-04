@@ -85,7 +85,7 @@ export const DoctorsMocks: {[key: string]: any} = {
             },
         ]
     },
-    [`${url}/v1/admin/doctor/additional_cities/:doctorId`]: {
+    [`${url}/v1/admin/doctor/:doctorId/additional_cities`]: {
         additionalCities: [
             {
                 id: 1,
@@ -117,7 +117,7 @@ export const DoctorsMocks: {[key: string]: any} = {
             }
         ]
     },
-    [`${url}/v1/admin/doctor/additional_specialities/:doctorId`]: {
+    [`${url}/v1/admin/doctor/:doctorId/additional_specialities`]: {
         additionalSpecialities: [
             {
                 id: 4,
@@ -173,7 +173,7 @@ export const DoctorsMocks: {[key: string]: any} = {
             }
         ]
     },
-    [`${url}/v1/admin/doctor/cooperations`]: {
+    [`${url}/v1/admin/doctor/cooperation_types`]: {
         cooperations: [
             {
                 id: 1,

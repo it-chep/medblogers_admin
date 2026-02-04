@@ -12,8 +12,7 @@ interface IProps{
 export const DeletePriceList: FC<IProps> = ({freelancerId, priceList, setPriceList}) => {
 
     const onDelete = async (ind: number) => {
-        // await freelancerService.deletePriceList(freelancerId, priceList[ind].id)
-        await new Promise(resolve => setTimeout(resolve, 3332))
+        await freelancerService.deletePriceList(freelancerId, priceList[ind].id)
         const copy: IPriceListItem[] = JSON.parse(JSON.stringify(priceList))
         copy.splice(ind, 1)
         setPriceList(copy)

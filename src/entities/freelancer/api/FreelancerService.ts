@@ -180,10 +180,10 @@ class FreelancerService {
         })
     }
 
-    async addRecommendation(freelancerID: bigint, doctorID: bigint) {
-        await fetchAuth(process.env.REACT_APP_SERVER_URL_API + `/v1/admin/freelancer/${freelancerID}/add_recommendation`, {
+    async addRecommendation(freelancerId: number, doctorId: number) {
+        await fetchAuth(process.env.REACT_APP_SERVER_URL_API + `/v1/admin/freelancer/${freelancerId}/add_recommendation`, {
             method: "POST",
-            body: JSON.stringify({"freelancerID": freelancerID, "doctorID": doctorID}),
+            body: JSON.stringify({freelancerId, doctorId}),
             headers: {
                 'Content-Type': 'application/json;charset=utf-8',
             }

@@ -1,0 +1,17 @@
+
+
+
+
+.content{
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    padding: 40px 60px;
+    background-color: var(--dark-background);
+    border-radius: 20px;
+    width: 460px;
+
+    .add{
+        height: 40px;
+    }
+}

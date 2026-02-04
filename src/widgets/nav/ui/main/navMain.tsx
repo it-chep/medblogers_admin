@@ -1,8 +1,9 @@
 import { FC } from "react"
 import classes from './navMain.module.scss'
-import { BLOGS_ROUTE, FREELANCERS_ROUTE, HOME_ROUTE } from "../../../../app/router/routes";
+import { BLOGS_ROUTE, HOME_ROUTE } from "../../../../app/router/routes";
 import { Link, useLocation } from "react-router-dom";
-import { DOCTORS_CITIES_ROUTE, DOCTORS_ROUTE } from "../../../../app/router/doctor/doctorRoutes";
+import { DOCTORS_ROUTE } from "../../../../app/router/doctor/doctorRoutes";
+import { FREELANCERS_ROUTE } from "../../../../app/router/freelancer/freelancerRoutes";
 
 type INav = {
     path: string;

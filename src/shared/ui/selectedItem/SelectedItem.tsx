@@ -21,7 +21,7 @@ export const SelectedItem: FC<IProps> = ({sign, items, onSelected, selectedItem}
     const [value, setValue] = useState<string>('')
     
     const searchItems = useMemo(() => {
-        return items.filter(item => item.name.includes(value))
+        return items.filter(item => item.name.toLocaleLowerCase().includes(value.toLocaleLowerCase()))
     }, [value, items])
 
     return (

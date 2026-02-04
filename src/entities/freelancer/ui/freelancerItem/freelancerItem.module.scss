@@ -1,0 +1,33 @@
+
+
+
+.item{
+    border-bottom: 1px solid var(--black);
+    background-color: #1C1C1C;
+    border-radius: 10px;
+
+    td{
+        padding: 16px 30px;
+
+        &:first-child{
+            border-top-left-radius: 8px;
+            border-bottom-left-radius: 8px;
+        }
+        &:last-child{
+            border-top-right-radius: 8px;
+            border-bottom-right-radius: 8px;
+        }
+    }
+
+    .feature{
+        width: 260px;
+    }
+
+    .link{
+        min-width: 220px;
+        a{
+            color: #FFF;
+            text-decoration: none;
+        }
+    }
+}

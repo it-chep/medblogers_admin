@@ -1,10 +1,11 @@
 import { DoctorsMocks } from "./doctors/DoctorsMocks";
+import { FreelancersMocks } from "./freelancers/FreelancersMocks";
 
 
 
 const mocks: {[key: string]: any} = {
     ...DoctorsMocks,
-    
+    ...FreelancersMocks
 };
 
 export async function findMock(url: string) {

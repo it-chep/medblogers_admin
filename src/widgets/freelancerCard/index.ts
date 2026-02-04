@@ -1,0 +1,1 @@
+export { FreelancerCard } from "./ui/card/FreelancerCard";

@@ -1,9 +1,8 @@
 import { FC, useEffect, useState } from 'react'
-import { ISpecialityItem } from '../../../../entities/doctor/model/types';
 import { useUserActions } from '../../../../entities/user';
 import { useGlobalMessageActions } from '../../../../entities/globalMessage';
 import { useGlobalLoadingActions } from '../../../../entities/globalLoading';
-import { doctorService } from '../../../../entities/doctor';
+import { doctorService, ISpecialityItemDoctor } from '../../../../entities/doctor';
 import { AuthError } from '../../../../shared/err/AuthError';
 import classes from '../changeAdditional.module.scss'
 import { SelectedItem } from '../../../../shared/ui/selectedItem';
@@ -15,18 +14,17 @@ interface IProps {
     doctorId: number;
 }
 
-export const ChangeAdditionalSpeciality: FC<IProps> = ({doctorId}) => {
+export const ChangeAdditionalSpecialityDoctor: FC<IProps> = ({doctorId}) => {
 
     const [isLoading, setIsLoading] = useState<boolean>(true)
-    const [specialities, setSpecialities] = useState<ISpecialityItem[]>([])
-    const [specialitiesDoctor, setSpecialitiesDoctor] = useState<ISpecialityItem[]>([])
+    const [specialities, setSpecialities] = useState<ISpecialityItemDoctor[]>([])
+    const [specialitiesDoctor, setSpecialitiesDoctor] = useState<ISpecialityItemDoctor[]>([])
     const {setIsAuth} = useUserActions()
     const {setGlobalMessage} = useGlobalMessageActions()
     const {setIsLoading: setIsLoadingGlobal} = useGlobalLoadingActions()
  
     const getData = async () => {
         try {
-
             setIsLoading(true)
             const specialitiesDoctorRes = await doctorService.getAdditionalSpecialitiesDoctor(doctorId)
             const specialitiesRes = await doctorService.getAdditionalSpecialities()
@@ -61,24 +59,28 @@ export const ChangeAdditionalSpeciality: FC<IProps> = ({doctorId}) => {
             } else {
                 setGlobalMessage({message: 'Ошибка при добавлении доп специальности', type: 'error'})
             }
+            throw e
         } finally {
             setIsLoadingGlobal(false)
         }
     }
 
-    const onSelected = async (selected: ISpecialityItem) => {
+    const onSelected = async (selected: ISpecialityItemDoctor) => {
         const isInclude = specialitiesDoctor.findIndex(spec => spec === selected) >= 0
         if(isInclude) return
-        await add(selected.id)
-        const copy: ISpecialityItem[] = JSON.parse(JSON.stringify(specialitiesDoctor))
-        copy.push(selected)
-        setSpecialitiesDoctor(copy)
+        try{
+            await add(selected.id)
+            const copy: ISpecialityItemDoctor[] = JSON.parse(JSON.stringify(specialitiesDoctor))
+            copy.push(selected)
+            setSpecialitiesDoctor(copy)
+        }
+        catch(e){}
     }
 
     const onDelete = async (ind: number) => {
         const targetSpec = specialitiesDoctor[ind];
         await doctorService.deleteAdditionalSpeciality(doctorId, targetSpec.id)
-        const copy: ISpecialityItem[] = JSON.parse(JSON.stringify(specialitiesDoctor))
+        const copy: ISpecialityItemDoctor[] = JSON.parse(JSON.stringify(specialitiesDoctor))
         copy.splice(ind, 1)
         setSpecialitiesDoctor(copy)
     }

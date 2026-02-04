@@ -3,7 +3,6 @@ import App from "../../App";
 import {
     BLOG_UPDATE_ROUTE,
     BLOGS_ROUTE,
-    FREELANCERS_ROUTE,
     HOME_ROUTE,
     LOGIN_ROUTE,
     REGISTRATION_ROUTE
@@ -18,6 +17,12 @@ import { DOCTORS_CITIES_ROUTE, DOCTORS_ROUTE, DOCTORS_SPECIALITIES_ROUTE, DOCTOR
 import DoctorsLayoutPage from "../../pages/doctors/DoctorsLayout";
 import DoctorsCitiesPage from "../../pages/doctors/cities/DoctorsCititesPage";
 import DoctorsSpecialitiesPage from "../../pages/doctors/specialities/DoctorsCititesPage";
+import { FREELANCERS_CITIES_ROUTE, FREELANCERS_ROUTE, FREELANCERS_SPECIALITIES_ROUTE, FREELANCERS_UPDATE_ROUTE } from "./freelancer/freelancerRoutes";
+import FreelancersLayoutPage from "../../pages/freelancers/FreelancersLayout";
+import FreelancersPage from "../../pages/freelancers/freelancers/Freelancers";
+import FreelancersCitiesPage from "../../pages/freelancers/cities/FreelancersCititesPage";
+import FreelancersSpecialitiesPage from "../../pages/freelancers/specialities/FreelancersSpecialitiesPage";
+import FreelancerPage from "../../pages/freelancer/Freelancer";
 // import FreelancersPage from "../../pages/freelancers/Freelancers";
 
 export const router: RouteObject[] = [
@@ -28,6 +33,28 @@ export const router: RouteObject[] = [
             {
                 path: HOME_ROUTE.path,
                 Component: HomePage
+            },
+            {
+                path: FREELANCERS_ROUTE.path,
+                Component: FreelancersLayoutPage,
+                children: [
+                    {
+                        path: FREELANCERS_ROUTE.path,
+                        Component: FreelancersPage
+                    },
+                    {
+                        path: FREELANCERS_CITIES_ROUTE.path,
+                        Component: FreelancersCitiesPage
+                    },
+                    {
+                        path: FREELANCERS_SPECIALITIES_ROUTE.path,
+                        Component: FreelancersSpecialitiesPage
+                    }
+                ]
+            },
+            {
+                path: FREELANCERS_UPDATE_ROUTE.path,
+                Component: FreelancerPage
             },
             {
                 path: DOCTORS_ROUTE.path,
@@ -51,10 +78,6 @@ export const router: RouteObject[] = [
                 path: DOCTORS_UPDATE_ROUTE.path,
                 Component: DoctorPage
             },
-            // {
-            //     path: FREELANCERS_ROUTE.path,
-            //     Component: FreelancersPage
-            // },
             {
                 path: BLOGS_ROUTE.path,
                 Component: BlogsPage

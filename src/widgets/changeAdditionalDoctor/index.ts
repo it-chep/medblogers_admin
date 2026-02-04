@@ -1,2 +1,2 @@
-export { ChangeAdditionalSpeciality } from "./ui/spec/ChangeAdditionalSpeciality";
-export { ChangeAdditionalDoctor } from "./ui/doctor/ChangeAdditionalDoctor";
+export { ChangeAdditionalSpecialityDoctor } from "./ui/spec/ChangeAdditionalSpeciality";
+export { ChangeAdditionalCityDoctor } from "./ui/city/ChangeAdditionalCity";

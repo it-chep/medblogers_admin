@@ -1,0 +1,22 @@
+
+
+
+.content{
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    padding: 40px 60px;
+    background-color: var(--dark-background);
+    border-radius: 20px;
+    width: 600px;
+
+    .add{
+        height: 40px;
+    }
+
+    .sign{
+        opacity: .6;
+        font-size: 14px;
+        margin: -6px 0 10px 0;
+    }
+}

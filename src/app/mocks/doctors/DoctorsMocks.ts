@@ -1,6 +1,22 @@
 const url = process.env.REACT_APP_SERVER_URL_API
 
 export const DoctorsMocks: {[key: string]: any} = {
+    [`${url}/v1/admin/freelancer/:freelancerId/recommendations`]: {
+        recommendations: [
+            {
+                doctorId: 1,
+                doctorName: 'Нечепорук Максим Алексеевич',
+            },
+            {
+                doctorId: 22,
+                doctorName: 'Нечепорук Марина Алексеевна?',
+            },
+            {
+                doctorId: 3,
+                doctorName: 'Калашников Павел Сергеевич',
+            },
+        ]
+    },
     [`${url}/v1/admin/doctor/additional/cities`]: {
         additionalCities: [
             {
@@ -145,6 +161,16 @@ export const DoctorsMocks: {[key: string]: any} = {
                     name: 'Бесплатно',
                 }
             },
+            {
+                id: 55,
+                name: 'Новый врач 1',
+                isActive: false,
+                image: '',
+                cooperationType: {
+                    id: 3,
+                    name: 'Бесплатно',
+                }
+            }
         ]
     },
     [`${url}/v1/admin/doctor/cooperations`]: {

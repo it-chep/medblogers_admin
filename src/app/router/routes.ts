@@ -28,14 +28,3 @@ export const REGISTRATION_ROUTE: IRoute = {
     name: 'Вход',
     path: '/registration'
 }
-
-// Freelancers
-export const FREELANCERS_ROUTE: IRoute = {
-    name: 'Помощники',
-    path: '/helpers'
-}
-
-export const FREELANCERS_UPDATE_ROUTE: IRoute = {
-    name: 'Обновление помощника',
-    path: '/helpers/:id'
-}

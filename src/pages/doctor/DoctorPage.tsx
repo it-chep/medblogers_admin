@@ -3,7 +3,7 @@ import { DoctorHeader } from '../../widgets/doctorHeader';
 import { DoctorCard } from '../../widgets/doctorCard';
 import { Navigate, useParams } from 'react-router-dom';
 import { HOME_ROUTE } from '../../app/router/routes';
-import { ChangeAdditionalDoctor, ChangeAdditionalSpeciality } from '../../widgets/changeAdditionalDoctor';
+import { ChangeAdditionalCityDoctor, ChangeAdditionalSpecialityDoctor } from '../../widgets/changeAdditionalDoctor';
 import { ChangeSubsDoctor } from '../../widgets/changeSubsDoctor';
 import { DeleteAction } from '../../features/deleteAction';
 import { DoctorDelete } from '../../widgets/doctorDelete';
@@ -23,8 +23,8 @@ export default function DoctorPage() {
         <section className={classes.container + " wrapper_main"}>
             <DoctorHeader doctorId={doctorId} />
             <DoctorCard doctorId={doctorId} />
-            <ChangeAdditionalSpeciality doctorId={doctorId} />
-            <ChangeAdditionalDoctor doctorId={doctorId} />
+            <ChangeAdditionalSpecialityDoctor doctorId={doctorId} />
+            <ChangeAdditionalCityDoctor doctorId={doctorId} />
             <ChangeSubsDoctor />
             <section className={classes.delete}>
                 <DoctorDelete doctorId={doctorId} />

@@ -1,5 +1,14 @@
 import {fetchAuth} from "../../../shared/api/ApiService";
-import {ICityItem, ICooperationType, IFreelancer, IFreelancerItem, IPriceListItem, IRecommendation, ISocialNetworkItem, ISpecialityItem} from "../model/types";
+import {
+    ICityItem,
+    ICooperationType,
+    IFreelancer,
+    IFreelancerItem,
+    IPriceListItem,
+    IRecommendation,
+    ISocialNetworkItem,
+    ISpecialityItem
+} from "../model/types";
 
 
 class FreelancerService {
@@ -9,7 +18,7 @@ class FreelancerService {
         const {cities}: { cities: ICityItem[] } = await res.json()
         return cities
     }
-    
+
     async getSpecialities(): Promise<ISpecialityItem[]> {
         const res = await fetchAuth(process.env.REACT_APP_SERVER_URL_API + `/v1/admin/freelancers/specialities`)
         const {specialities}: { specialities: ISpecialityItem[] } = await res.json()
@@ -28,27 +37,15 @@ class FreelancerService {
         return socialNetworks
     }
 
-    async getAdditionalCities(): Promise<ICityItem[]> {
-        const res = await fetchAuth(process.env.REACT_APP_SERVER_URL_API + `/v1/admin/freelancer/additional/cities`)
-        const {additionalCities} : {additionalCities: ICityItem[]} = await res.json()
-        return additionalCities
-    }
-
-    async getAdditionalSpecialities(): Promise<ISpecialityItem[]> {
-        const res = await fetchAuth(process.env.REACT_APP_SERVER_URL_API + `/v1/admin/freelancer/additional/specialities`)
-        const {additionalSpecialities} : {additionalSpecialities: ISpecialityItem[]} = await res.json()
-        return additionalSpecialities
-    }
-
     async getAdditionalCitiesFreelancer(freelancerId: number): Promise<ICityItem[]> {
-        const res = await fetchAuth(process.env.REACT_APP_SERVER_URL_API + `/v1/admin/freelancer/additional_cities/${freelancerId}`)
-        const {additionalCities} : {additionalCities: ICityItem[]} = await res.json()
+        const res = await fetchAuth(process.env.REACT_APP_SERVER_URL_API + `/v1/admin/freelancer/${freelancerId}/additional_cities`)
+        const {additionalCities}: { additionalCities: ICityItem[] } = await res.json()
         return additionalCities
     }
 
     async getAdditionalSpecialitiesFreelancer(freelancerId: number): Promise<ISpecialityItem[]> {
-        const res = await fetchAuth(process.env.REACT_APP_SERVER_URL_API + `/v1/admin/freelancer/additional_specialities/${freelancerId}`)
-        const {additionalSpecialities} : {additionalSpecialities: ISpecialityItem[]} = await res.json()
+        const res = await fetchAuth(process.env.REACT_APP_SERVER_URL_API + `/v1/admin/freelancer/${freelancerId}/additional_specialities`)
+        const {additionalSpecialities}: { additionalSpecialities: ISpecialityItem[] } = await res.json()
         return additionalSpecialities
     }
 
@@ -211,7 +208,7 @@ class FreelancerService {
                 'Content-Type': 'application/json;charset=utf-8',
             }
         })
-        const {priceListItemId}: {priceListItemId: number} = await res.json()
+        const {priceListItemId}: { priceListItemId: number } = await res.json()
         return priceListItemId
     }
 
@@ -231,9 +228,9 @@ class FreelancerService {
         return freelancers
     }
 
-    
+
     async getCooperations(): Promise<ICooperationType[]> {
-        const res = await fetchAuth(process.env.REACT_APP_SERVER_URL_API + `/v1/admin/freelancer/cooperations`)
+        const res = await fetchAuth(process.env.REACT_APP_SERVER_URL_API + `/v1/admin/freelancer/cooperation_types`)
         const {cooperations} = await res.json()
         return cooperations
     }
@@ -244,14 +241,14 @@ class FreelancerService {
     }
 
     async updateFreelancer(freelancer: IFreelancer) { // IFreelancerReq
-            await fetchAuth(process.env.REACT_APP_SERVER_URL_API + `/v1/admin/freelancer/${freelancer.id}/update`, {
-                method: "POST",
-                body: JSON.stringify({freelancer}),
-                headers: {
-                    'Content-Type': 'application/json;charset=utf-8',
-                }
-            })
-        }
+        await fetchAuth(process.env.REACT_APP_SERVER_URL_API + `/v1/admin/freelancer/${freelancer.id}/update`, {
+            method: "POST",
+            body: JSON.stringify({freelancer}),
+            headers: {
+                'Content-Type': 'application/json;charset=utf-8',
+            }
+        })
+    }
 
     async deleteFreelancer(freelancerId: number) {
         await fetchAuth(process.env.REACT_APP_SERVER_URL_API + `/v1/admin/freelancer/${freelancerId}/delete`, {
@@ -265,13 +262,13 @@ class FreelancerService {
 
     async getPriceList(freelancerId: number) {
         const res = await fetchAuth(process.env.REACT_APP_SERVER_URL_API + `/v1/admin/freelancer/${freelancerId}/price_list`)
-        const {priceList}: {priceList: IPriceListItem[]} = await res.json()
+        const {priceList}: { priceList: IPriceListItem[] } = await res.json()
         return priceList
     }
 
     async getRecommendations(freelancerId: number) {
         const res = await fetchAuth(process.env.REACT_APP_SERVER_URL_API + `/v1/admin/freelancer/${freelancerId}/recommendations`)
-        const {recommendations}: {recommendations: IRecommendation[]} = await res.json()
+        const {recommendations}: { recommendations: IRecommendation[] } = await res.json()
         return recommendations
     }
 }

@@ -4,15 +4,8 @@ import {ICityItem, ICooperationType, IDoctor, IDoctorItem, IDoctorRequest, ISpec
 
 
 class DoctorService {
-
-    async getAdditionalCities(): Promise<ICityItem[]> {
-        const res = await fetchAuth(process.env.REACT_APP_SERVER_URL_API + `/v1/admin/doctor/additional/cities`)
-        const {additionalCities} : {additionalCities: ICityItem[]} = await res.json()
-        return additionalCities
-    }
-
     async getAdditionalCitiesDoctor(doctorId: number): Promise<ICityItem[]> {
-        const res = await fetchAuth(process.env.REACT_APP_SERVER_URL_API + `/v1/admin/doctor/additional_cities/${doctorId}`)
+        const res = await fetchAuth(process.env.REACT_APP_SERVER_URL_API + `/v1/admin/doctor/${doctorId}/additional_cities`)
         const {additionalCities} : {additionalCities: ICityItem[]} = await res.json()
         return additionalCities
     }
@@ -24,7 +17,7 @@ class DoctorService {
     }
 
     async getAdditionalSpecialitiesDoctor(doctorId: number): Promise<ISpecialityItem[]> {
-        const res = await fetchAuth(process.env.REACT_APP_SERVER_URL_API + `/v1/admin/doctor/additional_specialities/${doctorId}`)
+        const res = await fetchAuth(process.env.REACT_APP_SERVER_URL_API + `/v1/admin/doctor/${doctorId}/additional_specialities`)
         const {additionalSpecialities} : {additionalSpecialities: ISpecialityItem[]} = await res.json()
         return additionalSpecialities
     }
@@ -127,7 +120,7 @@ class DoctorService {
     }
 
     async getCooperations(): Promise<ICooperationType[]> {
-        const res = await fetchAuth(process.env.REACT_APP_SERVER_URL_API + `/v1/admin/doctor/cooperations`)
+        const res = await fetchAuth(process.env.REACT_APP_SERVER_URL_API + `/v1/admin/doctor/cooperation_types`)
         const {cooperations} = await res.json()
         return cooperations
     }

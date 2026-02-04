@@ -27,7 +27,7 @@ export const ChangeAdditionalSpecialityFreelancer: FC<IProps> = ({freelancerId})
         try {
             setIsLoading(true)
             const specialitiesFreelancerRes = await freelancerService.getAdditionalSpecialitiesFreelancer(freelancerId)
-            const specialitiesRes = await freelancerService.getAdditionalSpecialities()
+            const specialitiesRes = await freelancerService.getSpecialities()
             setSpecialitiesFreelancer(specialitiesFreelancerRes)
             setSpecialities(specialitiesRes)
         } catch (e) {

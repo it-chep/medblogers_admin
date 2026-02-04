@@ -2,7 +2,7 @@ const url = process.env.REACT_APP_SERVER_URL_API
 
 export const FreelancersMocks: {[key: string]: any} = {
     [`${url}/v1/admin/freelancer/cooperation_types`]: {
-        cooperations: [
+        cooperationTypes: [
             {
                 id: 1,
                 name: 'Бесплатно'

@@ -1,5 +1,3 @@
-
-
 export interface IFreelancer {
     id: number
     name: string
@@ -53,7 +51,6 @@ export interface IPriceListItem {
 export interface ISocialNetworkItem {
     id: number
     name: string
-    amount: string
 }
 
 export interface IFreelancerItem {

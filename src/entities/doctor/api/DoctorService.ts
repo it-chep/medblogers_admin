@@ -83,8 +83,8 @@ class DoctorService {
             }
         );
 
-        const imageUrl: string = await res.json();
-        return imageUrl
+        const {image}: { image: string } = await res.json();
+        return image
     }
 
     async activateDoctor(doctorID: number) {

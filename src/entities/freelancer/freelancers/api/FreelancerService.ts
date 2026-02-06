@@ -1,4 +1,5 @@
 import {fetchAuth} from "../../../../shared/api/ApiService";
+import { IFreelancerRequest } from "../../model/types";
 import {IFreelancer, IFreelancerItem} from "../model/types";
 
 
@@ -168,7 +169,14 @@ class FreelancerService {
         return await res.json()
     }
 
-    async updateFreelancer() {
+    async updateFreelancer(freelancer: IFreelancerRequest) {
+        await fetchAuth(process.env.REACT_APP_SERVER_URL_API + `/api/v1/admin/freelancer/${freelancer.freelancerId}/update`, {
+            method: "POST",
+            body: JSON.stringify({freelancer}),
+            headers: {
+                'Content-Type': 'application/json;charset=utf-8',
+            }
+        })
     }
 
     async deleteFreelancer(freelancerID: bigint) {

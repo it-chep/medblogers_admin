@@ -7,6 +7,6 @@ export {DoctorItem} from "./ui/doctorItem/DoctorItem";
 export {doctorService} from "./api/DoctorService";
 
 export type {
-    IDoctorItem, ICityItem as ICityItemDoctor, ISpecialityItem as ISpecialityItemDoctor,
+    IDoctorItem, ICityItem as ICityItemDoctor, ISpecialityItem as ISpecialityItemDoctor, IDoctorRequest,
     ICooperationType as ICooperationTypeDoctor, SubscribersInfo as ISubscribersInfoDoctor
 } from "./model/types"

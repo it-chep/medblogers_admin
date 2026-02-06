@@ -174,7 +174,7 @@ class DoctorService {
     }
 
     async updateDoctor(doctor: IDoctorRequest) {
-        await fetchAuth(process.env.REACT_APP_SERVER_URL_API + `/v1/admin/doctor/${doctor.id}/update`, {
+        await fetchAuth(process.env.REACT_APP_SERVER_URL_API + `/v1/admin/doctor/${doctor.doctorId}/update`, {
             method: "POST",
             body: JSON.stringify({doctor}),
             headers: {

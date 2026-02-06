@@ -4,6 +4,7 @@ import {
     ICooperationType,
     IFreelancer,
     IFreelancerItem,
+    IFreelancerRequest,
     IPriceListItem,
     IRecommendation,
     ISocialNetworkItem,
@@ -240,8 +241,8 @@ class FreelancerService {
         return await res.json()
     }
 
-    async updateFreelancer(freelancer: IFreelancer) { // IFreelancerReq
-        await fetchAuth(process.env.REACT_APP_SERVER_URL_API + `/v1/admin/freelancer/${freelancer.id}/update`, {
+    async updateFreelancer(freelancer: IFreelancerRequest) { // IFreelancerReq
+        await fetchAuth(process.env.REACT_APP_SERVER_URL_API + `/v1/admin/freelancer/${freelancer.freelancerId}/update`, {
             method: "POST",
             body: JSON.stringify({freelancer}),
             headers: {

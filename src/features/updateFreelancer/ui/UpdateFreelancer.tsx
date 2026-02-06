@@ -6,7 +6,7 @@ import { useGlobalLoadingActions } from "../../../entities/globalLoading";
 import { useGlobalMessageActions } from "../../../entities/globalMessage";
 import { useUserActions } from "../../../entities/user";
 import { AuthError } from "../../../shared/err/AuthError";
-import { freelancerService } from "../../../entities/freelancer";
+import { freelancerService, IFreelancerRequest } from "../../../entities/freelancer";
 
 
 export const UpdateFreelancer: FC = () => {
@@ -16,10 +16,27 @@ export const UpdateFreelancer: FC = () => {
     const {setGlobalMessage} = useGlobalMessageActions()
     const {setIsAuth} = useUserActions()
 
+    const getFreelancerRequest = () => {
+        const freelancerReq: IFreelancerRequest = {
+            freelancerId: freelancer.id,
+            dateStarted: freelancer.dateStarted,
+            agencyRepresentative: freelancer.agencyRepresentative,
+            tgUrl: freelancer.tgUrl,
+            slug: freelancer.slug,
+            mainCityId: freelancer.mainCity.id,
+            mainSpecialityId: freelancer.mainSpeciality.id,
+            portfolioLink: freelancer.portfolioLink,
+            priceCategory: freelancer.priceCategory,
+            cooperationTypeId: freelancer.cooperationType.id,
+            name: freelancer.name,
+        }
+        return freelancerReq
+    }
+
     const onSave = async () => {
         try {
             setIsLoading(true)
-            await freelancerService.updateFreelancer(freelancer)
+            await freelancerService.updateFreelancer(getFreelancerRequest())
         } catch (e) {
             console.log(e)
             if (e instanceof AuthError) {

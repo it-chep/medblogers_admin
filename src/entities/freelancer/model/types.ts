@@ -1,4 +1,17 @@
 
+export interface IFreelancerRequest { 
+    freelancerId: number;
+    name: string;
+    slug: string;
+    portfolioLink: string
+    tgUrl: string;
+    mainCityId: number;
+    mainSpecialityId: number;
+    cooperationTypeId: number;
+    agencyRepresentative: boolean;
+    dateStarted: string;
+    priceCategory: number;
+}
 
 export interface IFreelancer {
     id: number

@@ -1,8 +1,27 @@
 
 
 export interface IDoctorRequest { 
-    id: number;
-    
+    doctorId: number;
+    name: string;
+    slug: string;
+
+    instUrl: string;
+    vkUrl: string;
+    dzenUrl: string;
+    tgUrl: string;
+    tgChannelUrl: string;
+    youtubeUrl: string;
+    tiktokUrl: string;
+    siteLink: string;
+    mainCityId: number;
+    mainSpecialityId: number;
+    mainBlogTheme: string;
+    isKfDoctor: boolean; 
+    birthDate: string;
+    cooperationTypeId: number;
+    marketingPreferences: string;
+    medicalDirections: string;
+    email: string;
 }
 
 export interface IDoctor {

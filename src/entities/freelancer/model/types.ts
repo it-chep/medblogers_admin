@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 
 export interface IFreelancerRequest { 
     freelancerId: number;
@@ -14,8 +13,6 @@ export interface IFreelancerRequest {
     priceCategory: number;
 }
 
-=======
->>>>>>> 4febcef0f3a53369d9233fa01ab2b4231d8a5320
 export interface IFreelancer {
     id: number
     name: string

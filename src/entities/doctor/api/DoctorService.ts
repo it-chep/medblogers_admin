@@ -174,9 +174,34 @@ class DoctorService {
     }
 
     async updateDoctor(doctor: IDoctorRequest) {
+        const requestBody = {
+            doctorId: doctor.doctorId,
+            name: doctor.name,
+            slug: doctor.slug,
+            email: doctor.email,
+            birthDate: doctor.birthDate,
+
+            mainCityId: doctor.mainCityId,
+            mainSpecialityId: doctor.mainSpecialityId,
+            mainBlogTheme: doctor.mainBlogTheme,
+            isKfDoctor: doctor.isKfDoctor,
+            cooperationTypeId: doctor.cooperationTypeId,
+            marketingPreferences: doctor.marketingPreferences,
+            medicalDirections: doctor.medicalDirections,
+
+            instUrl: doctor.instUrl,
+            vkUrl: doctor.vkUrl,
+            dzenUrl: doctor.dzenUrl,
+            tgUrl: doctor.tgUrl,
+            tgChannelUrl: doctor.tgChannelUrl,
+            youtubeUrl: doctor.youtubeUrl,
+            tiktokUrl: doctor.tiktokUrl,
+            siteLink: doctor.siteLink
+        };
+
         await fetchAuth(process.env.REACT_APP_SERVER_URL_API + `/v1/admin/doctor/${doctor.doctorId}/update`, {
             method: "POST",
-            body: JSON.stringify({doctor}),
+            body: JSON.stringify(requestBody),
             headers: {
                 'Content-Type': 'application/json;charset=utf-8',
             }

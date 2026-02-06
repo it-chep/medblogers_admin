@@ -29,9 +29,6 @@ export const FreelancerHeader: FC<IProps> = ({freelancerId}) => {
                 </span>
             </section>
             <section className={classes.right}>
-                <span className={classes.createdAt}>
-                    Дата создания: {freelancer.createdAt}
-                </span>
                 <UpdateFreelancer />
             </section>
         </section>

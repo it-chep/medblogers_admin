@@ -242,9 +242,23 @@ class FreelancerService {
     }
 
     async updateFreelancer(freelancer: IFreelancerRequest) { // IFreelancerReq
+        const requestBody = {
+            freelancerId: freelancer.freelancerId,
+            name: freelancer.name,
+            slug: freelancer.slug,
+            portfolioLink: freelancer.portfolioLink,
+            tgUrl: freelancer.tgUrl,
+            mainCityId: freelancer.mainCityId,
+            mainSpecialityId: freelancer.mainSpecialityId,
+            cooperationTypeId: freelancer.cooperationTypeId,
+            agencyRepresentative: freelancer.agencyRepresentative,
+            dateStarted: freelancer.dateStarted,
+            priceCategory: freelancer.priceCategory,
+        };
+
         await fetchAuth(process.env.REACT_APP_SERVER_URL_API + `/v1/admin/freelancer/${freelancer.freelancerId}/update`, {
             method: "POST",
-            body: JSON.stringify({freelancer}),
+            body: JSON.stringify(requestBody),
             headers: {
                 'Content-Type': 'application/json;charset=utf-8',
             }

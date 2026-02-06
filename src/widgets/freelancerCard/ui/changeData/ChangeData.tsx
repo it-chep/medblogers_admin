@@ -59,7 +59,6 @@ export const ChangeData: FC<IProps> = ({cities, specialities, cooperations}) => 
                 />
             </span>
             <InputEdit sign="Дата начала работы" value={freelancer.dateStarted} setValue={setDateStarted} />
-            <InputEdit sign="Дата рождения" value={freelancer.birthDate} setValue={setBirthDate} />
 
             <section className={classes.agencyRepresentative}>
                 <ToggleSwitch label="Представитель агентства" checked={freelancer.agencyRepresentative} onSelected={setAgencyRepresentative} />

@@ -216,7 +216,7 @@ class FreelancerService {
     async deletePriceList(freelancerId: number, priceListId: number) {
         await fetchAuth(process.env.REACT_APP_SERVER_URL_API + `/v1/admin/freelancer/${freelancerId}/delete_price_list`, {
             method: "POST",
-            body: JSON.stringify({freelancerId, priceListId}),
+            body: JSON.stringify({freelancerId, "price_list_item_id": priceListId}),
             headers: {
                 'Content-Type': 'application/json;charset=utf-8',
             }
@@ -232,8 +232,8 @@ class FreelancerService {
 
     async getCooperations(): Promise<ICooperationType[]> {
         const res = await fetchAuth(process.env.REACT_APP_SERVER_URL_API + `/v1/admin/freelancer/cooperation_types`)
-        const {cooperations} = await res.json()
-        return cooperations
+        const {cooperationTypes} = await res.json()
+        return cooperationTypes
     }
 
     async getFreelancerByID(freelancerId: number): Promise<IFreelancer> {

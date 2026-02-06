@@ -174,7 +174,7 @@ export const DoctorsMocks: {[key: string]: any} = {
         ]
     },
     [`${url}/v1/admin/doctor/cooperation_types`]: {
-        cooperations: [
+        cooperationTypes: [
             {
                 id: 1,
                 name: 'Бесплатно'

@@ -13,6 +13,9 @@ REACT_APP_SERVER_URL_API=host/api
 либо 'false', либо любое другое знач ('')
 например, REACT_APP_USE_AUTH=false
 
+### use mocks
+REACT_APP_USE_MOCK="true"
+
 
 ### Установка зависимостей
 npm install

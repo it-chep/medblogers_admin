@@ -1,59 +1,67 @@
-import { FC, useState } from "react";
+import React, { FC, useMemo, useState } from "react";
 import { IItem } from "../../model/types";
 import classes from './selectedItem.module.scss'
-import { LoaderSpinner } from "../spinner";
+import { MyInput } from "../myInput";
 
 interface IProps {
-    title?: string;
+    sign?: string | React.ReactElement;
     items: IItem[];
     onSelected: (selected: IItem) => void;
-    onDelete: (deleteItem: IItem) => void;
-    selectedItems: IItem[];
-    isLoading?: boolean;
+    selectedItem?: IItem;
 }
 
-export const SelectedItem: FC<IProps> = ({title, items, onSelected, selectedItems, onDelete, isLoading}) => {
+export const SelectedItem: FC<IProps> = ({sign, items, onSelected, selectedItem}) => {
 
     const [open, setOpen] = useState<boolean>(false)
 
     const onSelectedWrap = (item: IItem) => {
-        const isSelected = selectedItems.find(selectedItem => selectedItem.id === item.id)
-        if(!isSelected){
-            onSelected(item)
-        }
-        else{
-            onDelete(item)
-        }
+        onSelected(item)
     }
+
+    const [value, setValue] = useState<string>('')
+    
+    const searchItems = useMemo(() => {
+        return items.filter(item => item.name.toLocaleLowerCase().includes(value.toLocaleLowerCase()))
+    }, [value, items])
 
     return (
         <section className={classes.container}>
+            {
+                open
+                    &&
+                <section  
+                    onClick={() => setOpen(false)}
+                    className={classes.darken}
+                />
+            }
             <section 
                 className={classes.text}
                 onClick={() => setOpen(!open)}
                 onMouseDown={e => e.preventDefault()}
             >
-                {title || 'Выбрать'}
+                <span>{sign || 'Выбрать'}</span>{selectedItem && <span className={classes.name}>: {selectedItem.name}</span>}
             </section>
-            <ul className={classes.items + (open ? ` ${classes.open}` : '')}>
+            <section className={classes.wrapper + (open ? ` ${classes.open}` : '')}> 
+                <section>
+                    <MyInput placeholder="Поиск..." value={value} setValue={setValue} />
+                </section>
                 {
-                    isLoading
+                    searchItems.length > 0
                         &&
-                    <section className={classes.loader}>
-                        <LoaderSpinner />
-                    </section>
+                    <ul className={classes.items + (open ? ` ${classes.open}` : '')}>
+                        {searchItems.map(item => 
+                            <li 
+                                className={classes.item  + ((selectedItem && selectedItem.id) === item.id ? ` ${classes.selected}` : '')}
+                                key={item.id}
+                                onClick={() => onSelectedWrap(item)}
+                                onMouseDown={e => e.preventDefault()}
+                            >
+                                {item.name}
+                            </li>
+                        )}
+                    </ul>
                 }
-                {items.map(item => 
-                    <li 
-                        className={classes.item  + (selectedItems.find(selectedItem => selectedItem.id === item.id) ? ` ${classes.selected}` : '')}
-                        key={item.id}
-                        onClick={() => onSelectedWrap(item)}
-                        onMouseDown={e => e.preventDefault()}
-                    >
-                        {item.name}
-                    </li>
-                )}
-            </ul>
+            </section>
         </section>
     )
 }

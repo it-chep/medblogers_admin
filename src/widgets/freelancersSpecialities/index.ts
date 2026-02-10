@@ -1,0 +1,1 @@
+export { FreelancersSpecialities } from "./ui/FreelancersSpecialities";

@@ -5,15 +5,16 @@ import { LoaderSpinner } from "../spinner";
 interface IProps {
     onClick?: () => void;
     isLoading?: boolean;
+    disabled?: boolean;
     error?: string;
 }
 
-export const MyButton: FC<IProps & PropsWithChildren> = ({isLoading, error, onClick, children}) => {
+export const MyButton: FC<IProps & PropsWithChildren> = ({isLoading, disabled, error, onClick, children}) => {
 
     return (
         <section className={classes.wrapper}>
             <button 
-                disabled={isLoading || Boolean(error)}
+                disabled={disabled || isLoading || Boolean(error)}
                 onClick={onClick} 
                 className={classes.button + (isLoading ? ` ${classes.loader}` : '')}
             >

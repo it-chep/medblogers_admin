@@ -1,10 +1,12 @@
-import { IRoute } from "./types";
+import {IRoute} from "./types";
 
 export const HOME_ROUTE: IRoute = {
     path: '/',
     name: 'Главная'
 }
 
+
+// Blogs
 export const BLOGS_ROUTE: IRoute = {
     path: '/blogs',
     name: 'Статьи'
@@ -15,6 +17,8 @@ export const BLOG_UPDATE_ROUTE: IRoute = {
     name: 'Обновление статьи'
 }
 
+
+// AUTH
 export const LOGIN_ROUTE: IRoute = {
     name: 'Вход',
     path: '/login'

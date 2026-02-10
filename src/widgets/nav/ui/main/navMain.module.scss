@@ -1,0 +1,29 @@
+
+
+.container{
+    display: flex;
+    gap: 10px;
+    background-color: #1C1C1C;
+    border-radius: 10px;
+    margin: 10px 0;
+
+    .item{
+        display: flex;
+        align-items: center;
+        padding: 18px 24px;
+        font-size: 20px;
+        font-weight: 600;
+        cursor: pointer;
+        text-decoration: none;
+        color: #fff;
+        transition: all .15s ease;
+
+        &.selected{
+            color: var(--blue);
+        }
+
+        &:hover{
+            color: var(--blue);
+        }
+    }
+}

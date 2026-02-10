@@ -1,0 +1,107 @@
+
+
+.content{
+    display: flex;
+    color: var(--text-gray);
+    border-radius: 16px;
+    border: 1px solid var(--dark-gray);
+    position: relative;
+
+    .list{
+        position: relative;
+        list-style: none;
+        width: 100%;
+    
+        &::after{
+            content: "";
+            display: block;
+            width: 1px;
+            height: 100%;
+            top: 0;
+            left: 50%;
+            background-color: var(--dark-gray);
+            position: absolute;
+        }
+    
+        .section{
+            display: flex;
+            gap: 10px;
+            width: 50%;
+        }
+    
+        .top{
+            display: flex;
+            width: 100%;
+            gap: 40px;
+            padding: 20px 20px 8px 20px;
+    
+            .badge{
+                padding: 8px 20px;
+                border-radius: 8px;
+                background: var(--dark-gray);
+                text-align: center;
+                    
+                &:first-child{
+                    width: 65%;
+                }
+    
+                &:last-child{
+                    width: 35%;
+                }
+            }
+        }
+    }
+}
+
+
+@media (max-width: 1000px) {
+    .content{
+        .list{
+        
+            &::after{
+                display: none;
+            }
+
+            .section{
+                width: 100%;
+                gap: 16px;
+                border-bottom: 1px solid var(--dark-gray);
+                padding: 8px 20px;
+
+                &.empty{
+                    display: none;
+                }
+
+                &.last{
+                    border-bottom: none;
+                }
+            }
+
+            .top{
+                padding: 12px 0 2px 0;
+                .section{
+                    border-bottom: none;
+                    &:last-child{
+                        display: none;
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+@media (max-width: 550px) {
+    .content{
+        .list{
+            .top{
+                display: none;
+            }
+
+            .section{
+                flex-direction: column;
+                gap: 4px;
+            }
+        }
+    }
+}

@@ -4,6 +4,8 @@ import { blogReducer } from "../../entities/blog";
 import { globalMessageReducer } from "../../entities/globalMessage";
 import { globalLoadingReducer } from "../../entities/globalLoading";
 import { userReducer } from "../../entities/user";
+import { doctorReducer } from "../../entities/doctor";
+import { freelancerReducer } from "../../entities/freelancer";
 
 
 
@@ -14,6 +16,8 @@ export const store = configureStore({
         globalMessageReducer,
         globalLoadingReducer,
         userReducer,
+        doctorReducer,
+        freelancerReducer,
     }
 })
 

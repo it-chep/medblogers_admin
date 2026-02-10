@@ -1,0 +1,1 @@
+export { DeletePriceList } from "./ui/DeletePriceList";

@@ -1,0 +1,1 @@
+export { UpdateFreelancer } from "./ui/UpdateFreelancer";

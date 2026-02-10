@@ -5,7 +5,7 @@ import { useUserActions } from "../../../entities/user";
 import { AuthError } from "../../../shared/err/AuthError";
 import { blogService, IBlogCategory, useBlogActions } from "../../../entities/blog";
 import { useAppSelector } from "../../../app/store/store";
-import { SelectedItem } from "../../../shared/ui/selectedItem";
+import { SelectedItems } from "../../../shared/ui/selectedItems";
 
 interface IProps {
 
@@ -77,7 +77,7 @@ export const ChangeCategories: FC = () => {
 
     return (
         <section className={classes.container}>
-            <SelectedItem 
+            <SelectedItems
                 title="Выбрать категории"
                 items={categories}
                 onSelected={changeCategoryWrap(true)}

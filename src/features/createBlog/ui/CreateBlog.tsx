@@ -1,5 +1,5 @@
 import { FC, useState } from "react";
-import { PlusSvg } from "../../../shared/lib/assets/PlusSvg";
+import { PlusSvg } from "../../../shared/lib/assets/plus/PlusSvg";
 import { Modal } from "../../../shared/ui/modal";
 import classes from './createBlog.module.scss'
 import { MyInput } from "../../../shared/ui/myInput";

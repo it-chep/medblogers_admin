@@ -1,0 +1,1 @@
+export { UpdateFreelancerImage } from "./ui/UpdateFreelancerImage";

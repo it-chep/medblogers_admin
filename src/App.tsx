@@ -7,6 +7,7 @@ import { useEffect, useRef, useState } from 'react';
 import { LoaderSpinner } from './shared/ui/spinner';
 import { LOGIN_ROUTE } from './app/router/routes';
 import { userService, useUserActions } from './entities/user';
+import { Nav } from './widgets/nav';
 
 function App() {
   const {isLoading: globalIsLoading} = useAppSelector(s => s.globalLoadingReducer)
@@ -60,6 +61,9 @@ function App() {
         <section className={"loader_main"}><LoaderSpinner /></section>
           :
         <>
+          <header className="wrapper_main">
+            <Nav />
+          </header>
           <Outlet />
           { globalMessage.message && <GlobalMessage /> }
           { globalIsLoading && <GlobalLoading /> }

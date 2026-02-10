@@ -1,5 +1,5 @@
 import { FC, RefObject, useEffect, useState } from "react";
-import { PlusSvg } from "../../../../shared/lib/assets/PlusSvg";
+import { PlusSvg } from "../../../../shared/lib/assets/plus/PlusSvg";
 import classes from './newParagraph.module.scss'
 import { SelectedParagraph } from "../selectedParagraph/SelectedParagraph";
 

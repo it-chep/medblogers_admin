@@ -1,0 +1,9 @@
+.delete{
+    fill: #ffffff;
+    cursor: pointer;
+    transition: all .15s ease;
+
+    &:hover{
+        fill: var(--light-gray)
+    }
+}

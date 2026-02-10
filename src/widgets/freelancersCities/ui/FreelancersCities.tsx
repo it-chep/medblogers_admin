@@ -38,6 +38,16 @@ export const FreelancersCities: FC = () => {
         getData()
     }, [])
 
+    const addCity = async (name: string) => {
+        try{
+            await freelancerService.addCity(name)
+            window.location.reload()
+        }
+        catch(e){
+            throw e
+        }
+    }
+
     return (
         <section className={classes.container}>
             {
@@ -58,7 +68,7 @@ export const FreelancersCities: FC = () => {
                                 buttonText="Добавить город"
                                 placeholder="Введите название города..."
                                 errorMessage="Ошибка при создании города"
-                                req={freelancerService.addCity}
+                                req={addCity}
                             />
                         </section>
                     </section>

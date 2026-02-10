@@ -30,6 +30,7 @@ export const AddDoctorsCities: FC = () => {
         try {
             setIsLoading(true)
             await doctorService.addCity(city)
+            window.location.reload()
         } catch (e) {
             console.log(e)
             if (e instanceof AuthError) {

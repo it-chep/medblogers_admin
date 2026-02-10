@@ -30,6 +30,7 @@ export const AddDoctorsSpecialities: FC = () => {
         try {
             setIsLoading(true)
             await doctorService.addSpeciality(speciality)
+            window.location.reload()
         } catch (e) {
             console.log(e)
             if (e instanceof AuthError) {

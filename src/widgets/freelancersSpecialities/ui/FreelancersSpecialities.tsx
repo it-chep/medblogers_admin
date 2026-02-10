@@ -38,6 +38,16 @@ export const FreelancersSpecialities: FC = () => {
         getData()
     }, [])
 
+    const addSpeciality = async (name: string) => {
+        try{
+            await freelancerService.addSpeciality(name)
+            window.location.reload()
+        }
+        catch(e){
+            throw e
+        }
+    }
+
     return (
         <section className={classes.container}>
             {
@@ -58,7 +68,7 @@ export const FreelancersSpecialities: FC = () => {
                                 buttonText="Добавить специальность"
                                 placeholder="Введите название специальности..."
                                 errorMessage="Ошибка при создании специальности"
-                                req={freelancerService.addSpeciality}
+                                req={addSpeciality}
                             />
                         </section>
                     </section>

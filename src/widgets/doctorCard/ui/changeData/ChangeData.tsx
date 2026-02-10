@@ -9,6 +9,7 @@ import {
     useDoctorActions
 } from "../../../../entities/doctor";
 import {SelectedItem} from "../../../../shared/ui/selectedItem";
+import { TextareaEdit } from "../../../../shared/ui/textareaEdit";
 
 interface IProps {
     cities: ICityItemDoctor[];
@@ -77,7 +78,7 @@ export const ChangeData: FC<IProps> = ({cities, specialities, cooperations}) => 
                 value={doctor.marketingPreferences}
                 setValue={setMarketingPreferences}
             />
-            <InputEdit sign="Тематика блога" value={doctor.mainBlogTheme} setValue={setMainBlogTheme}/>
+            <TextareaEdit sign="Тематика блога" value={doctor.mainBlogTheme} setValue={setMainBlogTheme}/>
 
         </section>
     )

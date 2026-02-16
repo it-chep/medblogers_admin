@@ -1,0 +1,1 @@
+export { ChangeDoctorVip } from "./ui/doctorVip/ChangeDoctorVip";

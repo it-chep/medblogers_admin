@@ -1,0 +1,1 @@
+export { SaveDoctorVip } from "./ui/SaveDoctorVip";

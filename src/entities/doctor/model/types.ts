@@ -85,6 +85,7 @@ export interface IDoctorItem {
     isActive: boolean
     image: string
     cooperationType: ICooperationType
+    createdAt: string
 }
 
 export interface IDoctorState {

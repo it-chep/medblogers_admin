@@ -20,10 +20,12 @@ export const DoctorItem: FC<IProps & PropsWithChildren> = ({doctorItem, ind, chi
                 {doctorItem.id}
             </td>
             <td>
-                {doctorItem.name}
+                <Link to={'/doctors/' + doctorItem.id}>
+                    {doctorItem.name}
+                </Link>
             </td>
             <td>
-                {doctorItem.image}
+                {doctorItem.createdAt}
             </td>
             <td className={classes.feature}>
                 {children}

@@ -1,20 +1,27 @@
-import { FC, useState } from "react";
+import { FC, ReactNode, useMemo, useState } from "react";
 import { IItem } from "../../model/types";
 import classes from './selectedItems.module.scss'
 import { LoaderSpinner } from "../spinner";
 
 interface IProps {
-    title?: string;
+    title?: ReactNode;
     items: IItem[];
     onSelected: (selected: IItem) => void;
     onDelete: (deleteItem: IItem) => void;
     selectedItems: IItem[];
     isLoading?: boolean;
+    searchable?: boolean;
 }
 
-export const SelectedItems: FC<IProps> = ({title, items, onSelected, selectedItems, onDelete, isLoading}) => {
+export const SelectedItems: FC<IProps> = ({title, items, onSelected, selectedItems, onDelete, isLoading, searchable}) => {
 
     const [open, setOpen] = useState<boolean>(false)
+    const [search, setSearch] = useState<string>('')
+
+    const filteredItems = useMemo(() => {
+        if (!search) return items
+        return items.filter(item => item.name.toLowerCase().includes(search.toLowerCase()))
+    }, [items, search])
 
     const onSelectedWrap = (item: IItem) => {
         const isSelected = selectedItems.find(selectedItem => selectedItem.id === item.id)
@@ -28,7 +35,7 @@ export const SelectedItems: FC<IProps> = ({title, items, onSelected, selectedIte
 
     return (
         <section className={classes.container}>
-            <section 
+            <section
                 className={classes.text}
                 onClick={() => setOpen(!open)}
                 onMouseDown={e => e.preventDefault()}
@@ -43,8 +50,22 @@ export const SelectedItems: FC<IProps> = ({title, items, onSelected, selectedIte
                         <LoaderSpinner />
                     </section>
                 }
-                {items.map(item => 
-                    <li 
+                {
+                    searchable
+                        &&
+                    <li className={classes.searchBox}>
+                        <input
+                            className={classes.searchInput}
+                            type="text"
+                            placeholder="Поиск..."
+                            value={search}
+                            onChange={e => setSearch(e.target.value)}
+                            onMouseDown={e => e.stopPropagation()}
+                        />
+                    </li>
+                }
+                {filteredItems.map(item =>
+                    <li
                         className={classes.item  + (selectedItems.find(selectedItem => selectedItem.id === item.id) ? ` ${classes.selected}` : '')}
                         key={item.id}
                         onClick={() => onSelectedWrap(item)}

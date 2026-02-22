@@ -1,6 +1,15 @@
 import {ISpecialityItemDoctor} from "..";
 import {fetchAuth} from "../../../shared/api/ApiService"
-import {ICityItem, ICooperationType, IDoctor, IDoctorItem, IDoctorRequest, IDoctorVip, IDoctorVipChange, IDoctorVipReq, ISpecialityItem} from "../model/types";
+import {
+    ICityItem,
+    ICooperationType,
+    IDoctor,
+    IDoctorItem,
+    IDoctorRequest,
+    IDoctorVip,
+    IDoctorVipReq,
+    ISpecialityItem
+} from "../model/types";
 
 
 class DoctorService {
@@ -75,7 +84,15 @@ class DoctorService {
     async changeVip(doctorVip: IDoctorVipReq) {
         const res = await fetchAuth(process.env.REACT_APP_SERVER_URL_API + `/v1/admin/doctor/${doctorVip.doctorId}/change_vip_info`, {
             method: "POST",
-            body: JSON.stringify({doctorVip}),
+            body: JSON.stringify({
+                canBarter: doctorVip.canBarter,
+                canBuyAdvertising: doctorVip.canBuyAdvertising,
+                canSellAdvertising: doctorVip.canSellAdvertising,
+                advertisingPriceFrom: doctorVip.advertisingPriceFrom,
+                shortMessage: doctorVip.shortMessage,
+                blogInfo: doctorVip.blogInfo,
+                endDate: doctorVip.endDate,
+            }),
             headers: {
                 'Content-Type': 'application/json;charset=utf-8',
             }

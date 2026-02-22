@@ -1,4 +1,4 @@
-import {FC, useEffect, useState} from "react";
+import {FC, useCallback, useEffect, useState} from "react";
 import {doctorService, ISpecialityItemDoctor} from "../../../entities/doctor";
 import {SelectedItems} from "../../../shared/ui/selectedItems";
 import {IItem} from "../../../shared/model/types";
@@ -27,35 +27,36 @@ export const FilterSpecialities: FC<IProps> = ({onFilterChange}) => {
     const {setGlobalMessage} = useGlobalMessageActions()
     const {setIsAuth} = useUserActions()
 
-    useEffect(() => {
-        const fetchSpecialities = async () => {
-            try {
-                setIsLoading(true)
-                const data = await doctorService.getSpecialities()
-                setSpecialities(data)
+    const fetchSpecialities = useCallback(async () => {
+        try {
+            setIsLoading(true)
+            const data = await doctorService.getSpecialities()
+            setSpecialities(data)
 
-                const urlParams = new URLSearchParams(window.location.search)
-                const idsParam = urlParams.get('specialities')
-                if (idsParam) {
-                    const ids = idsParam.split(',').map(Number)
-                    const initial = data.filter(s => ids.includes(Number(s.id)))
-                    if (initial.length > 0) {
-                        setSelectedSpecialities(initial)
-                    }
+            const urlParams = new URLSearchParams(window.location.search)
+            const idsParam = urlParams.get('specialities')
+            if (idsParam) {
+                const ids = idsParam.split(',').map(Number)
+                const initial = data.filter(s => ids.includes(Number(s.id)))
+                if (initial.length > 0) {
+                    setSelectedSpecialities(initial)
                 }
-            } catch (e) {
-                if (e instanceof AuthError) {
-                    setIsAuth(false)
-                    setGlobalMessage({message: (e as AuthError).message, type: 'error'})
-                } else {
-                    setGlobalMessage({message: 'Ошибка при получении специальностей', type: 'error'})
-                }
-            } finally {
-                setIsLoading(false)
             }
+        } catch (e) {
+            if (e instanceof AuthError) {
+                setIsAuth(false)
+                setGlobalMessage({message: (e as AuthError).message, type: 'error'})
+            } else {
+                setGlobalMessage({message: 'Ошибка при получении специальностей', type: 'error'})
+            }
+        } finally {
+            setIsLoading(false)
         }
+    }, [setGlobalMessage, setIsAuth])
+
+    useEffect(() => {
         fetchSpecialities()
-    }, [])
+    }, [fetchSpecialities])
 
     const updateUrl = (items: IItem[]) => {
         setSelectedSpecialities(items)

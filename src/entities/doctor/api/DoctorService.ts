@@ -253,6 +253,18 @@ class DoctorService {
         })
     }
 
+    async filterDoctors(specialities: number[]): Promise<IDoctorItem[]> {
+        const res = await fetchAuth(process.env.REACT_APP_SERVER_URL_API + `/v1/admin/doctors/filter`, {
+            method: "POST",
+            body: JSON.stringify({specialities}),
+            headers: {
+                'Content-Type': 'application/json;charset=utf-8',
+            }
+        })
+        const {doctors}: { doctors: IDoctorItem[] } = await res.json()
+        return doctors
+    }
+
     async deleteDoctor(doctorId: number) {
         await fetchAuth(process.env.REACT_APP_SERVER_URL_API + `/v1/admin/doctor/${doctorId}/delete`, {
             method: "POST",

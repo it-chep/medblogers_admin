@@ -37,6 +37,30 @@
             border-radius: 50% / 2px;
         }
 
+        .searchBox{
+            padding: 4px 6px 8px;
+
+            .searchInput{
+                width: 100%;
+                padding: 8px 10px;
+                border-radius: 8px;
+                border: 1px solid rgba(255, 255, 255, 0.15);
+                background-color: #2a2a2a;
+                color: #fff;
+                font-size: 14px;
+                outline: none;
+                transition: border-color .15s ease;
+
+                &::placeholder{
+                    color: #888;
+                }
+
+                &:focus{
+                    border-color: var(--blue);
+                }
+            }
+        }
+
         .item{
             display: flex;
             align-items: center;

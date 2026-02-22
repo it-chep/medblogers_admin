@@ -71,7 +71,7 @@ export const Doctors: FC = () => {
                             <tr className={classes.item}>
                                 <th>ID</th>
                                 <th>ФИО</th>
-                                <th>ФОТО ?</th>
+                                <th>Дата создания</th>
                                 <th>Статус публикации</th>
                                 <th></th>
                             </tr>

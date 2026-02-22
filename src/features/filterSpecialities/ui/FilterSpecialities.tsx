@@ -56,7 +56,7 @@ export const FilterSpecialities: FC<IProps> = ({onFilterChange}) => {
 
     useEffect(() => {
         fetchSpecialities()
-    }, [fetchSpecialities])
+    }, [])
 
     const updateUrl = (items: IItem[]) => {
         setSelectedSpecialities(items)

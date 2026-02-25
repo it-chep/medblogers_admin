@@ -21,17 +21,17 @@ export const ChangeForm: FC<IProps> = ({doctorVip, setDoctorVip}) => {
     return (
         <section className={classes.main}>
             <ToggleSwitch 
-                label="Бартер" 
+                label="Может БАРТЕР"
                 checked={doctorVip.canBarter} 
                 onSelected={setCanBarter} 
             />
             <ToggleSwitch 
-                label="Может купить рекламу" 
+                label="Может КУПИТЬ рекламу"
                 checked={doctorVip.canBuyAdvertising} 
                 onSelected={setCanBuyAdvertising} 
             />
             <ToggleSwitch 
-                label="Может продать рекламу" 
+                label="Может ПРОДАТЬ рекламу"
                 checked={doctorVip.canSellAdvertising} 
                 onSelected={setCanSellAdvertising} 
             />
@@ -42,12 +42,12 @@ export const ChangeForm: FC<IProps> = ({doctorVip, setDoctorVip}) => {
                 type="number"    
                 width={200}
             />
-            <TextareaEdit sign="Небольшая информация" 
+            <TextareaEdit sign="Послание другим (короткое сообщение)"
                 value={String(doctorVip.shortMessage)} 
                 setValue={setShortMessage}
                 width={600}
             />
-            <TextareaEdit sign="Информация о блоге" 
+            <TextareaEdit sign="Расширенная информация о блоге"
                 value={String(doctorVip.blogInfo)} 
                 setValue={setBlogInfo}
                 width={600}

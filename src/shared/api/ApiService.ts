@@ -1,7 +1,7 @@
 // import { AuthError } from "../lib/helpers/AuthError";
 
 import { findMock } from "../../app/mocks/Mocks";
-import { AuthError } from "../err/AuthError";
+import { AuthError, MyError } from "../err/AuthError";
 import { IValidationError } from "../model/types";
 
 let isRefreshing = false;
@@ -88,7 +88,7 @@ export const fetchAuth = async (url: string, init?: RequestInit, isRetry?: boole
         }
         else{
             const message: IValidationError = await res.json()
-            throw new Error(message.message || 'Ошибка в запросе')
+            throw new MyError(message.message || 'Ошибка в запросе', res.status)
         }
     }
     

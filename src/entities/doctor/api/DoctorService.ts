@@ -1,6 +1,15 @@
 import {ISpecialityItemDoctor} from "..";
 import {fetchAuth} from "../../../shared/api/ApiService"
-import {ICityItem, ICooperationType, IDoctor, IDoctorItem, IDoctorRequest, ISpecialityItem} from "../model/types";
+import {
+    ICityItem,
+    ICooperationType,
+    IDoctor,
+    IDoctorItem,
+    IDoctorRequest,
+    IDoctorVip,
+    IDoctorVipReq,
+    ISpecialityItem
+} from "../model/types";
 
 
 class DoctorService {
@@ -54,6 +63,42 @@ class DoctorService {
                 'Content-Type': 'application/json;charset=utf-8',
             }
         })
+    }
+
+    async changeActiveVip(doctorId: number, isVipActive: boolean) {
+        await fetchAuth(process.env.REACT_APP_SERVER_URL_API + `/v1/admin/doctor/${doctorId}/change_vip_activity`, {
+            method: "POST",
+            body: JSON.stringify({doctorId, isVipActive}),
+            headers: {
+                'Content-Type': 'application/json;charset=utf-8',
+            }
+        })
+    }
+
+    async getVip(doctorId: number) {
+        const res = await fetchAuth(process.env.REACT_APP_SERVER_URL_API + `/v1/admin/doctor/${doctorId}/vip_info`)
+        const data: IDoctorVip = await res.json()
+        return data
+    }
+
+    async changeVip(doctorVip: IDoctorVipReq) {
+        const res = await fetchAuth(process.env.REACT_APP_SERVER_URL_API + `/v1/admin/doctor/${doctorVip.doctorId}/change_vip_info`, {
+            method: "POST",
+            body: JSON.stringify({
+                canBarter: doctorVip.canBarter,
+                canBuyAdvertising: doctorVip.canBuyAdvertising,
+                canSellAdvertising: doctorVip.canSellAdvertising,
+                advertisingPriceFrom: doctorVip.advertisingPriceFrom,
+                shortMessage: doctorVip.shortMessage,
+                blogInfo: doctorVip.blogInfo,
+                endDate: doctorVip.endDate,
+            }),
+            headers: {
+                'Content-Type': 'application/json;charset=utf-8',
+            }
+        })
+        const data: IDoctorVip = await res.json()
+        return data
     }
 
     async saveDoctorImage(doctorId: number, imageData: ArrayBuffer): Promise<string> {

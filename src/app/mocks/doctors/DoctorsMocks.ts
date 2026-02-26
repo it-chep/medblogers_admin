@@ -189,6 +189,16 @@ export const DoctorsMocks: {[key: string]: any} = {
             },
         ]
     },
+    [`${url}/v1/admin/doctor/:doctorId/vip_info`]: {
+        canBarter: true,
+        canBuyAdvertising: true,
+        canSellAdvertising: false,
+        shortMessage: '',
+        advertisingPriceFrom: 12,
+        blogInfo: '',
+        endDate: '12.03.2026',
+        isActive: false,
+    },
     [`${url}/v1/admin/doctor/:doctorId`]: {
         id: 3,
         name: 'Калашников Павел Сергеевич',

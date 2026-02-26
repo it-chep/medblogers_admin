@@ -93,3 +93,18 @@ export interface IDoctorState {
     isLoading: boolean;
     error: string;
 }
+
+export interface IDoctorVipChange {
+    doctorId: number;
+    canBarter: boolean;
+    canBuyAdvertising: boolean;
+    canSellAdvertising: boolean; 
+    advertisingPriceFrom: number;
+    shortMessage: string;
+    blogInfo: string;
+    endDate: string;
+    isActive: boolean;
+}
+
+export type IDoctorVip = Omit<IDoctorVipChange, "doctorId">
+export type IDoctorVipReq = Omit<IDoctorVipChange, "isActive">

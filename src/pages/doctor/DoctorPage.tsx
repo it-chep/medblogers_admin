@@ -6,6 +6,7 @@ import {HOME_ROUTE} from '../../app/router/routes';
 import {ChangeAdditionalCityDoctor, ChangeAdditionalSpecialityDoctor} from '../../widgets/changeAdditionalDoctor';
 import {ChangeSubsDoctor} from '../../widgets/changeSubsDoctor';
 import {useEffect,} from "react";
+import { ChangeDoctorVip } from '../../widgets/changeDoctorVip';
 
 
 export default function DoctorPage() {
@@ -31,6 +32,7 @@ export default function DoctorPage() {
             <ChangeAdditionalSpecialityDoctor doctorId={doctorId}/>
             <ChangeAdditionalCityDoctor doctorId={doctorId}/>
             <ChangeSubsDoctor/>
+            <ChangeDoctorVip doctorId={doctorId} />
             {/*<section className={classes.delete}>*/}
             {/*    <DoctorDelete doctorId={doctorId}/>*/}
             {/*</section>*/}

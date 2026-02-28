@@ -7,6 +7,7 @@ import {ChangeAdditionalCityDoctor, ChangeAdditionalSpecialityDoctor} from '../.
 import {ChangeSubsDoctor} from '../../widgets/changeSubsDoctor';
 import {useEffect,} from "react";
 import { ChangeDoctorVip } from '../../widgets/changeDoctorVip';
+import { DoctorMbcHistory } from '../../widgets/doctorMbcHistory';
 
 
 export default function DoctorPage() {
@@ -33,6 +34,7 @@ export default function DoctorPage() {
             <ChangeAdditionalCityDoctor doctorId={doctorId}/>
             <ChangeSubsDoctor/>
             <ChangeDoctorVip doctorId={doctorId} />
+            <DoctorMbcHistory doctorId={doctorId} />
             {/*<section className={classes.delete}>*/}
             {/*    <DoctorDelete doctorId={doctorId}/>*/}
             {/*</section>*/}

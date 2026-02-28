@@ -8,6 +8,7 @@ import {
     IDoctorRequest,
     IDoctorVip,
     IDoctorVipReq,
+    IMBCHistoryItem,
     ISpecialityItem
 } from "../model/types";
 
@@ -263,6 +264,22 @@ class DoctorService {
         })
         const {doctors}: { doctors: IDoctorItem[] } = await res.json()
         return doctors
+    }
+
+    async getMBCHistory(doctorId: number): Promise<IMBCHistoryItem[]> {
+        const res = await fetchAuth(process.env.REACT_APP_SERVER_URL_API + `/v1/admin/doctor/${doctorId}/mbc_history`)
+        const {items}: { items: IMBCHistoryItem[] } = await res.json()
+        return items ?? []
+    }
+
+    async accrueMBC(doctorId: number, mbcCount: number) {
+        await fetchAuth(process.env.REACT_APP_SERVER_URL_API + `/v1/admin/doctor/${doctorId}/accure_mbc`, {
+            method: "POST",
+            body: JSON.stringify({"doctorId": doctorId, "mbcCount": mbcCount}),
+            headers: {
+                'Content-Type': 'application/json;charset=utf-8',
+            }
+        })
     }
 
     async deleteDoctor(doctorId: number) {

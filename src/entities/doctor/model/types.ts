@@ -108,3 +108,13 @@ export interface IDoctorVipChange {
 
 export type IDoctorVip = Omit<IDoctorVipChange, "doctorId">
 export type IDoctorVipReq = Omit<IDoctorVipChange, "isActive">
+
+export interface IMBCHistoryItem {
+    mbcCount: number;
+    occurredAt: string;
+}
+
+export interface IMBCAccrueRequest {
+    doctorId: number;
+    mbcCount: number;
+}

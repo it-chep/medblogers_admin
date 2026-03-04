@@ -1,5 +1,6 @@
 import {ISpecialityItemDoctor} from "..";
-import {fetchAuth} from "../../../shared/api/ApiService"
+import {fetchAuth} from "../../../shared/api/ApiService";
+
 import {
     ICityItem,
     ICooperationType,
@@ -10,7 +11,6 @@ import {
     IDoctorVipReq,
     ISpecialityItem
 } from "../model/types";
-
 
 class DoctorService {
     async getAdditionalCitiesDoctor(doctorId: number): Promise<ICityItem[]> {
@@ -89,7 +89,6 @@ class DoctorService {
                 canBuyAdvertising: doctorVip.canBuyAdvertising,
                 canSellAdvertising: doctorVip.canSellAdvertising,
                 advertisingPriceFrom: doctorVip.advertisingPriceFrom,
-                shortMessage: doctorVip.shortMessage,
                 blogInfo: doctorVip.blogInfo,
                 endDate: doctorVip.endDate,
             }),

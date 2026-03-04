@@ -14,10 +14,10 @@ interface IProps {
 export const ChangeForm: FC<IProps> = ({doctorVip, setDoctorVip}) => {
 
     const {
-        setCanBarter, setCanBuyAdvertising, setCanSellAdvertising, setAdvertisingPriceFrom,
-        setShortMessage, setBlogInfo, setEndDate
+        setCanBarter, setCanBuyAdvertising, setCanSellAdvertising,
+        setAdvertisingPriceFrom, setBlogInfo, setEndDate
     } = changeDoctorVip(doctorVip, setDoctorVip)
-    
+
     return (
         <section className={classes.main}>
             <ToggleSwitch 
@@ -42,13 +42,9 @@ export const ChangeForm: FC<IProps> = ({doctorVip, setDoctorVip}) => {
                 type="number"    
                 width={200}
             />
-            <TextareaEdit sign="Послание другим (короткое сообщение)"
-                value={String(doctorVip.shortMessage)} 
-                setValue={setShortMessage}
-                width={600}
-            />
             <TextareaEdit sign="Расширенная информация о блоге"
-                value={String(doctorVip.blogInfo)} 
+                value={doctorVip.blogInfo}
+                markdown 
                 setValue={setBlogInfo}
                 width={600}
             />

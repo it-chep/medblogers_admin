@@ -24,7 +24,6 @@ export const SaveDoctorVip: FC<IProps> = ({doctorVip}) => {
             canBuyAdvertising: doctorVip.canBuyAdvertising,
             canSellAdvertising: doctorVip.canSellAdvertising,
             blogInfo: doctorVip.blogInfo,
-            shortMessage: doctorVip.shortMessage,
             endDate: doctorVip.endDate,
             advertisingPriceFrom: doctorVip.advertisingPriceFrom,
         }
@@ -53,7 +52,6 @@ export const SaveDoctorVip: FC<IProps> = ({doctorVip}) => {
             <MyButton onClick={onSave}>
                 Сохранить
             </MyButton>
-            
         </section>
     )
 }

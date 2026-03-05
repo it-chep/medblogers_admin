@@ -3,7 +3,7 @@ import classes from './doctorMbcHistory.module.scss'
 import { useGlobalMessageActions } from "../../../entities/globalMessage"
 import { useUserActions } from "../../../entities/user"
 import { doctorService, IMBCHistoryItem } from "../../../entities/doctor"
-import { AuthError } from "../../../shared/err/AuthError"
+import { AuthError, MyError } from "../../../shared/err/AuthError"
 import { LoaderContainer } from "../../../shared/ui/loaderContainer"
 import { AccrueDoctorMbc } from "../../../features/accrueDoctorMbc"
 
@@ -24,7 +24,8 @@ export const DoctorMbcHistory: FC<IProps> = ({doctorId}) => {
             const items = await doctorService.getMBCHistory(doctorId)
             setHistory(items)
         } catch (e) {
-            if (e instanceof AuthError) {
+            if(e instanceof MyError && e.status === 404){}
+            else if (e instanceof AuthError) {
                 setIsAuth(false)
                 setGlobalMessage({message: e.message, type: 'error'})
             } else {

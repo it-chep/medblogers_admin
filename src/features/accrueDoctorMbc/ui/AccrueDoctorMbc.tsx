@@ -51,9 +51,11 @@ export const AccrueDoctorMbc: FC<IProps> = ({doctorId, onSuccess}) => {
 
     return (
         <section className={classes.container}>
-            <MyButton onClick={() => setIsOpen(true)}>
-                Начислить баллы
-            </MyButton>
+            <section className={classes.button}>
+                <MyButton onClick={() => setIsOpen(true)}>
+                    Начислить баллы
+                </MyButton>
+            </section>
             <Modal open={isOpen} setOpen={setIsOpen}>
                 <section className={classes.modalContent}>
                     <section className={classes.modalTitle}>

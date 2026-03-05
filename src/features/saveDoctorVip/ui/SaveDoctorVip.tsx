@@ -34,6 +34,7 @@ export const SaveDoctorVip: FC<IProps> = ({doctorVip}) => {
         try {
             setIsLoading(true)
             await doctorService.changeVip(getDoctorVipReq())
+            setGlobalMessage({message: 'Успешное сохранение данных вип доктора', type: 'ok'})
         } catch (e) {
             console.log(e)
             if (e instanceof AuthError) {

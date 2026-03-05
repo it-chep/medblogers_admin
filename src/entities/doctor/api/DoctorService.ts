@@ -90,7 +90,7 @@ class DoctorService {
                 canSellAdvertising: doctorVip.canSellAdvertising,
                 advertisingPriceFrom: doctorVip.advertisingPriceFrom,
                 blogInfo: doctorVip.blogInfo,
-                endDate: doctorVip.endDate,
+                endDate: doctorVip.endDate.split('-').reverse().join('.'),
             }),
             headers: {
                 'Content-Type': 'application/json;charset=utf-8',

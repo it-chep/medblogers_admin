@@ -100,7 +100,6 @@ export interface IDoctorVipChange {
     canBuyAdvertising: boolean;
     canSellAdvertising: boolean; 
     advertisingPriceFrom: number;
-    shortMessage: string;
     blogInfo: string;
     endDate: string;
     isActive: boolean;

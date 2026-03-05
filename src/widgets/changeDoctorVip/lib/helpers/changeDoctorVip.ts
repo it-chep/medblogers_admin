@@ -17,9 +17,6 @@ export const changeDoctorVip = (
         setCanSellAdvertising(canSellAdvertising: boolean){
             setDoctorVip({...doctorVip, canSellAdvertising})
         },
-        setShortMessage(shortMessage: string){
-            setDoctorVip({...doctorVip, shortMessage})
-        },
         setAdvertisingPriceFrom(advertisingPriceFrom: number){
             setDoctorVip({...doctorVip, advertisingPriceFrom})
         },

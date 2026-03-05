@@ -1,15 +1,17 @@
 import { ComponentProps, FC, KeyboardEvent, useEffect, useState } from "react";
 import classes from './textareaEdit.module.scss'
+import markdownIt from "markdown-it";
 
 interface IProps {
     value: string;
     setValue: (value: string) => void;
     width?: number;
     sign?: string;
+    markdown?: boolean;
 }
 
 export const TextareaEdit: FC<IProps & ComponentProps<'textarea'>> = (
-    {value, setValue, width, sign, ...props}
+    {value, setValue, width, sign, markdown, ...props}
 ) => {
 
     const [edit, setEdit] = useState<boolean>(false)
@@ -17,6 +19,7 @@ export const TextareaEdit: FC<IProps & ComponentProps<'textarea'>> = (
 
     const onEdit = (edit: boolean) => {
         if(!edit){
+            console.log(newVal)
             setValue(newVal)
         }
         setEdit(edit)
@@ -34,6 +37,11 @@ export const TextareaEdit: FC<IProps & ComponentProps<'textarea'>> = (
         if(e.key === 'Escape'){
             onClose()
         }
+    }
+
+    const render = () => {
+        const mk = markdownIt()
+        return <span dangerouslySetInnerHTML={{__html: mk.render(value)}}></span>   
     }
 
     return (
@@ -58,7 +66,7 @@ export const TextareaEdit: FC<IProps & ComponentProps<'textarea'>> = (
                         />
                             :
                         <span className={classes.value}>
-                            {value}
+                            {markdown ? render() : value}
                         </span>
                 }
             {

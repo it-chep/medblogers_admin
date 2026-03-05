@@ -23,7 +23,6 @@ export const ChangeDoctorVip: FC<IProps> = ({doctorId}) => {
         canSellAdvertising: false,
         endDate: '',
         advertisingPriceFrom: 0,
-        shortMessage: '',
         blogInfo: '',
         isActive: false,
     })

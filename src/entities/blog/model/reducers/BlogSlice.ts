@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { IBlog, IBlogCategory, IBlogState } from "../types";
+import { IBlog, IBlogCategory, IBlogDoctor, IBlogState } from "../types";
 
 
 const BlogInitialState: IBlogState = {
@@ -66,6 +66,9 @@ export const BlogSlice = createSlice({
                 copy.splice(targetInd, 1)
                 state.blog.categories = copy;
             }
+        },
+        setDoctor(state, action: PayloadAction<IBlogDoctor>){
+            state.blog.doctor = action.payload;
         },
     }
 })

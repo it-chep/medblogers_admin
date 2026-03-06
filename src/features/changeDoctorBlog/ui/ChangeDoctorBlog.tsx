@@ -7,8 +7,7 @@ import {useBlogActions} from "../../../entities/blog";
 import {useAppSelector} from "../../../app/store/store";
 import {SelectedItem} from "../../../shared/ui/selectedItem";
 import {IItem} from "../../../shared/model/types";
-import {doctorService} from "../../../entities/doctor";
-import {IDoctorItem} from "../../../entities/doctor/model/types";
+import {doctorService, IDoctorItem} from "../../../entities/doctor";
 
 export const ChangeDoctorBlog: FC = () => {
 

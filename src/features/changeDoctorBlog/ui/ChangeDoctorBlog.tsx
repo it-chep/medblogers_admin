@@ -61,20 +61,20 @@ export const ChangeDoctorBlog: FC = () => {
             {
                 blog.doctor.doctorId > 0
                     ?
-                    <section className={classes.doctor}>
-                        <span>Автор</span>
-                        <span className={classes.name}>{blog.doctor.doctorName}</span>
-                        <span className={classes.remove} onClick={onRemove}>✕</span>
-                    </section>
+                <section className={classes.doctor}>
+                    <span>Автор</span>
+                    <span className={classes.name}>{blog.doctor.doctorName}</span>
+                    <span className={classes.remove} onClick={onRemove}>✕</span>
+                </section>
                     :
-                    <section className={classes.select_doctor}>
-                        <SelectedItem
-                            sign="Автор"
-                            items={doctorItems}
-                            selectedItem={selectedDoctor}
-                            onSelected={onSelected}
-                        />
-                    </section>
+                <section className={classes.select_doctor}>
+                    <SelectedItem
+                        sign="Автор"
+                        items={doctorItems}
+                        selectedItem={selectedDoctor}
+                        onSelected={onSelected}
+                    />
+                </section>
             }
         </section>
     )

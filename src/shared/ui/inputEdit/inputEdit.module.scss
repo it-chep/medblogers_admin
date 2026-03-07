@@ -33,6 +33,10 @@
         color: var(--text-gray);
     }
 
+    svg{
+        min-width: 14px;
+    }
+
     .editSvg{
         cursor: pointer;
         fill: #c9c9c9;

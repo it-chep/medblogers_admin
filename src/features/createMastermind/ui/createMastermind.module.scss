@@ -1,0 +1,79 @@
+.container {
+    .createButton {
+        border: none;
+        background: var(--blue);
+        color: #fff;
+        border-radius: 8px;
+        padding: 10px 16px;
+        cursor: pointer;
+    }
+
+    .popupOverlay {
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.55);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 1000;
+        padding: 16px;
+    }
+
+    .popupCard {
+        width: 100%;
+        max-width: 520px;
+        border: 1px solid var(--dark-gray);
+        border-radius: 10px;
+        padding: 14px;
+        background: var(--light-black);
+    }
+
+    .popupHeader {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 10px;
+
+        h2 {
+            font-size: 20px;
+        }
+
+        button {
+            border: 1px solid var(--dark-gray);
+            background: transparent;
+            color: var(--text-gray);
+            border-radius: 8px;
+            padding: 8px 10px;
+            cursor: pointer;
+        }
+    }
+
+    .form {
+        display: grid;
+        gap: 10px;
+    }
+
+    input {
+        width: 100%;
+        border: 1px solid var(--dark-gray);
+        background: var(--black);
+        color: var(--text-gray);
+        border-radius: 8px;
+        padding: 10px;
+        font-size: 14px;
+    }
+
+    .form button {
+        border: none;
+        background: var(--blue);
+        color: #fff;
+        border-radius: 8px;
+        padding: 10px;
+        cursor: pointer;
+
+        &:disabled {
+            opacity: 0.7;
+            cursor: not-allowed;
+        }
+    }
+}

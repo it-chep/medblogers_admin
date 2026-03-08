@@ -4,6 +4,7 @@ import { BLOGS_ROUTE } from "../../../../app/router/routes";
 import { Link } from "react-router-dom";
 import { DOCTORS_ROUTE } from "../../../../app/router/doctor/doctorRoutes";
 import { FREELANCERS_ROUTE } from "../../../../app/router/freelancer/freelancerRoutes";
+import { MASTERMINDS_ROUTE } from "../../../../app/router/mastermind/mastermindRoutes";
 
 type INav = {
     path: string;
@@ -16,6 +17,7 @@ export const NavHome: FC = () => {
         BLOGS_ROUTE,
         DOCTORS_ROUTE,
         FREELANCERS_ROUTE,
+        MASTERMINDS_ROUTE,
     ]   
 
     return (

@@ -1,2 +1,32 @@
 
+.container {
+    margin-top: 16px;
 
+    h1 {
+        font-size: 32px;
+        margin-bottom: 12px;
+    }
+
+    .sections {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+        gap: 12px;
+    }
+
+    .sectionItem {
+        display: block;
+        border: 1px solid var(--dark-gray);
+        border-radius: 10px;
+        background: var(--light-black);
+        padding: 16px;
+        font-size: 22px;
+        font-weight: 700;
+        transition: border-color .15s ease;
+        color: var(--text-gray);
+        text-decoration: none;
+
+        &:hover {
+            border-color: var(--blue);
+        }
+    }
+}

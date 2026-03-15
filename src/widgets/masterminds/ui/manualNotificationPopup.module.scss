@@ -1,0 +1,52 @@
+.popupOverlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.55);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    padding: 16px;
+}
+
+.popupCard {
+    width: 100%;
+    max-width: 460px;
+    border: 1px solid var(--dark-gray);
+    border-radius: 10px;
+    padding: 16px;
+    background: var(--light-black);
+
+    h3 {
+        margin-bottom: 8px;
+    }
+
+    p {
+        color: var(--light-gray);
+        margin-bottom: 14px;
+    }
+}
+
+.popupActions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 8px;
+
+    button {
+        border-radius: 8px;
+        padding: 8px 10px;
+        cursor: pointer;
+        color: var(--text-gray);
+    }
+
+    button:first-child {
+        border: 1px solid var(--dark-gray);
+        background: transparent;
+    }
+
+    button:last-child {
+        border: none;
+        background: var(--blue);
+        color: #fff;
+    }
+}

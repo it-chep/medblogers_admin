@@ -23,6 +23,8 @@ import FreelancersPage from "../../pages/freelancers/freelancers/Freelancers";
 import FreelancersCitiesPage from "../../pages/freelancers/cities/FreelancersCititesPage";
 import FreelancersSpecialitiesPage from "../../pages/freelancers/specialities/FreelancersSpecialitiesPage";
 import FreelancerPage from "../../pages/freelancer/Freelancer";
+import MastermindsPage from "../../pages/masterminds/Masterminds";
+import { MASTERMINDS_ROUTE } from "./mastermind/mastermindRoutes";
 // import FreelancersPage from "../../pages/freelancers/Freelancers";
 
 export const router: RouteObject[] = [
@@ -85,6 +87,10 @@ export const router: RouteObject[] = [
             {
                 path: BLOG_UPDATE_ROUTE.path,
                 Component: BlogEditPage
+            },
+            {
+                path: MASTERMINDS_ROUTE.path,
+                Component: MastermindsPage
             },
             {
                 path: LOGIN_ROUTE.path,
